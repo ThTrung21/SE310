@@ -1,0 +1,324 @@
+﻿<Window x:Class="BookMK.Views.ViewForm.ViewBookForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookMK.Views.ViewForm"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+         xmlns:converter="clr-namespace:BookMK.Converters"    
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="#36393E"
+        Title="ViewBookForm" Height="550" Width="930">
+    <Window.Resources>
+        <converter:AbsoluteFileNameToBitmapImage x:Key="filenameToImage"/>
+    </Window.Resources>
+
+    <Border
+        CornerRadius="15"
+        Padding="16 0 16 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <materialDesign:PackIcon
+                Grid.Row="0"
+                Kind="CloseThick"
+                Foreground="#B44E4E"
+                Height="32"
+                HorizontalAlignment="Right"
+                Name="CloseBtn"
+                Cursor="Hand"
+                MouseUp="CloseBtn_MouseUp"
+                Width="32px"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="350"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Rectangle Grid.Row="0"
+                               Width="270"
+                               Height="340"
+                               VerticalAlignment="Bottom">
+                        <Rectangle.Fill>
+                            <ImageBrush Stretch="Uniform" ImageSource="{Binding Filename, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource filenameToImage}}"></ImageBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <!--<Button Grid.Row="1"
+                            VerticalAlignment="Top"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Cursor="Hand"
+                            Width="130"
+                            Padding="0"
+                            
+                            Content="Change Cover"
+                            Command="{Binding SaveImageDialog}"
+                            >
+                        <Button.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" 
+                                           FontFamily="{StaticResource Inter}"
+                                           Foreground="#5876DF"
+                                           TextDecorations="Underline"/>
+                            </DataTemplate>
+                        </Button.ContentTemplate>
+                    </Button>-->
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition  Height="90"/>
+                        <RowDefinition Height="84"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="64"/>
+                    </Grid.RowDefinitions>
+                    <Grid 
+                    Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Name:"
+                           Foreground="White"
+                           VerticalAlignment="Top"
+                           FontSize="20"
+                           Grid.Row="0"
+                           FontFamily="{StaticResource Inter}"/>
+                        <TextBox
+                    IsReadOnly="True"
+                    Cursor="No"       
+                    Text="{Binding CurrentBook.Title,UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Row="1" 
+                    FontSize="18"
+                    Margin="0 10 0 0"
+                    Height="44"    
+                    TextAlignment="Left"
+                    VerticalAlignment="top"  
+                    MaxLength="50"
+                    Style="{StaticResource FilledTextBox}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid 
+                                Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Author:"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   FontSize="20"
+                                   Grid.Row="0"
+                                      
+                                   FontFamily="{StaticResource Inter}"/>
+                            <TextBox
+                                    Cursor="No"
+                                    IsReadOnly="True"
+                                    Text="{Binding CurrentBook.AuthorName,UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Row="1" 
+                                    FontSize="18"
+                                    Margin="0 10 10 0"
+                                    Height="44"    
+                                    TextAlignment="Left"
+                                    VerticalAlignment="top"  
+                                    MaxLength="50"
+                                    Style="{StaticResource FilledTextBox}"/>
+                        </Grid>
+                        <Grid 
+                                Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Release Year:"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   FontSize="20"
+                                   Grid.Row="0"
+                                   FontFamily="{StaticResource Inter}"/>
+                            <TextBox
+                                    Text="{Binding CurrentBook.ReleaseYear,UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Row="1" 
+                                    Cursor="No"
+                                    IsReadOnly="True"
+                                    FontSize="18"
+                                    Margin="0 10 0 0"
+                                    Height="44"    
+                                    TextAlignment="Left"
+                                    VerticalAlignment="top"  
+                                    MaxLength="50"
+                                    Style="{StaticResource FilledTextBox}"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid 
+                                Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Stock:"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   FontSize="20"
+                                   Grid.Row="0"
+                                      
+                                   FontFamily="{StaticResource Inter}"/>
+                            <TextBox
+                                    Cursor="No"
+                                    IsReadOnly="True"
+                                    Text="{Binding CurrentBook.Stock,UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Row="1" 
+                                    FontSize="18"
+                                    Margin="0 10 10 0"
+                                    Height="44"    
+                                    TextAlignment="Left"
+                                    VerticalAlignment="top"  
+                                    MaxLength="50"
+                                    Style="{StaticResource FilledTextBox}"/>
+                        </Grid>
+                        <Grid 
+                                Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Selling Price ($):"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   FontSize="20"
+                                   Grid.Row="0"
+                                   FontFamily="{StaticResource Inter}"/>
+                            <TextBox
+                                    Text="{Binding CurrentBook.SellPrice,UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Row="1" 
+                                    FontSize="18"
+                                    Margin="0 10 0 0"
+                                    Height="44"    
+                                    TextAlignment="Left"
+                                    VerticalAlignment="top"  
+                                    MaxLength="50"
+                                    Style="{StaticResource FilledTextBox}"/>
+                        </Grid>
+                    </Grid>
+                  
+                        <Button
+                            Grid.Row="4"
+                            Name="InsertBtn"
+                            VerticalAlignment="Center"
+                            Margin="0 0 0 0 " 
+                            HorizontalAlignment="Center" Width="200" Height="40" Padding="0" 
+                            Content="Update"
+                            Click="InsertBtn_Click"
+                            FontFamily="{StaticResource Inter}"
+                            FontSize="18"
+                            Cursor="Hand"
+                            Style="{StaticResource RoundedButtonStyle}" >
+
+                        </Button>
+                       
+                    
+                    
+
+                    <Grid
+                        Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition/>
+                           
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Genres:"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   FontSize="20"
+                                   Grid.Row="0"
+                                      
+                                   FontFamily="{StaticResource Inter}"/>
+
+                        <Grid
+                            Grid.Row="1">
+                            
+
+                            <Border
+                                Grid.Column="0"
+                                Margin="0 4"
+                                
+                                BorderBrush="White"
+                                BorderThickness="2"
+                                CornerRadius="15">
+                                <ListBox 
+                                    
+                    
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                    ItemContainerStyle="{StaticResource HighlightListBoxItemStyle}" 
+                                    ItemsSource="{Binding CurrentBook.Genre}"
+                                    Foreground="White"
+                                    FontSize="18"
+                                    FontFamily="{StaticResource Inter}"
+                                    x:Name="AvailableListBox"  
+                                    SelectionMode="Single" />
+                            </Border>
+                            <!--<StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Button  Style="{StaticResource RoundedButtonStyle}" Content="&gt;" FontSize="20"  Width="40" Margin="0,5" Name="AddGenre" Click="AddGenre_Click"/>
+                                <Button  Style="{StaticResource RoundedButtonStyle}" Content="&lt;" FontSize="20" Width="40" Margin="0,5" Name="RemoveGenre" Click="RemoveGenre_Click"/>
+                            </StackPanel>-->
+                            
+                        </Grid>
+
+                        <!--<Border
+                            Margin="0 4"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            CornerRadius="15"
+                            
+                            Grid.Row="1">
+                            
+                            
+                            <ListBox 
+                                
+                                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                Name="MyListBox"                                
+                                Foreground="White"
+                                FontSize="18"
+                                ItemContainerStyle="{StaticResource HighlightListBoxItemStyle}"
+                                FontFamily="{StaticResource RobotoMono}"
+                                SelectedItem="{Binding SelectedGenres}"
+                                ItemsSource="{Binding ComboBoxGenreItems}"
+                                PreviewMouseDown="MyListBox_PreviewMouseDown"
+                                SelectionMode="Multiple" SelectionChanged="MyListBox_SelectionChanged">
+
+                            
+                            </ListBox>
+                        </Border>-->
+                       
+                    </Grid>
+
+
+
+                </Grid>
+
+
+            </Grid>
+        </Grid>
+
+    </Border>
+</Window>
