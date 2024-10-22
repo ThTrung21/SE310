@@ -24,15 +24,7 @@ namespace BookMK.Commands.InsertCommand
             this.Cashier = c;
         }
 
-        public Discount GetDiscount()
-        {
-            DataProvider<Discount> db = new DataProvider<Discount>(Discount.Collection);
-            FilterDefinition<Discount> filter = Builders<Discount>.Filter.Eq(x => x.ID, 0);
-            List<Discount> b = db.ReadFiltered(filter);
-            if (b.Count() > 0)
-                return b[0];
-            return null;
-        }
+       
 
         public override async Task ExecuteAsync(object parameter)
         {
@@ -57,7 +49,7 @@ namespace BookMK.Commands.InsertCommand
                 StaffID = Cashier.ID,
                 StaffName = Cashier.FullName,
                 Time = DateTime.Now,
-                Total = vm.FinalPrice
+               
             };
             try
             {
@@ -91,19 +83,16 @@ namespace BookMK.Commands.InsertCommand
                 {
                     if (vm.SelectedCustomer.ID != 0)
                     {
-                        Discount ldiscount = GetDiscount();
-                        int pointsEarned = (int)(vm.TotalPrice / 10);
-                        vm.SelectedCustomer.PurchasePoint += pointsEarned;
-                        int milestoneCount = vm.SelectedCustomer.PurchasePoint / ldiscount.PointMileStone;
-                        vm.SelectedCustomer.IsLoyalDiscountReady = milestoneCount > 0;
+                       
+                      
 
-                        FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, vm.SelectedCustomer.ID);
-                        UpdateDefinition<Customer> update = Builders<Customer>.Update
-                            .Set(x => x.PurchasePoint, vm.SelectedCustomer.PurchasePoint)
-                            .Set(x => x.IsLoyalDiscountReady, vm.SelectedCustomer.IsLoyalDiscountReady);
+                        //FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, vm.SelectedCustomer.ID);
+                        //UpdateDefinition<Customer> update = Builders<Customer>.Update
+                        //    .Set(x => x.PurchasePoint, vm.SelectedCustomer.PurchasePoint)
+                        //    .Set(x => x.IsLoyalDiscountReady, vm.SelectedCustomer.IsLoyalDiscountReady);
 
-                        DataProvider<Customer> dbc = new DataProvider<Customer>(Customer.Collection);
-                        dbc.Update(filter, update);
+                        //DataProvider<Customer> dbc = new DataProvider<Customer>(Customer.Collection);
+                        //dbc.Update(filter, update);
                     }
                     else
                     {

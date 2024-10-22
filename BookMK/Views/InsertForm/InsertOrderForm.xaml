@@ -345,7 +345,7 @@
                             <RowDefinition Height="20"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Amount Discount:"
+                        <!--<TextBlock Text="Amount Discount:"
                            Foreground="White"
                            VerticalAlignment="Top"
                            FontSize="20"
@@ -374,7 +374,7 @@
                                     <TextBlock Text="{Binding Value}" Width="370" FontSize="20" Foreground="White" Padding="8 0" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
-                        </ComboBox>
+                        </ComboBox>-->
 
 
 

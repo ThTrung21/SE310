@@ -25,58 +25,58 @@ namespace BookMK.Commands.DummyData
                     new Book
                     {
                         ID = 1,
-                        Cover = "1.png",
-                        SellPrice = 12,
+                        Cover = "https://firebasestorage.googleapis.com/v0/b/bookmk-a5859.appspot.com/o/BookCover1.jpg?alt=media&token=081b7537-4217-4feb-b842-5640269b1a53",
+                        
                         ReleaseYear = "2015",
                         Genre = genre1,
                         Title = "The Old Man and the Sea",
                         AuthorName = "Test",
                         Stock = 12
                     },
-                    new Book
-                    {
-                        ID = 2,
-                        Cover = "2.png",
-                        SellPrice = 20,
-                        ReleaseYear = "2005",
-                        Genre = genre2,
-                        Title = "Harry Potter and The Lost Child",
-                        AuthorName = "J.K. Rowling",
-                        Stock = 123
-                    },
-                    new Book
-                    {
-                        ID = 3,
-                        Cover = "3.png",
-                        SellPrice = 51,
-                        ReleaseYear = "2015",
-                        Genre = genre3,
-                        Title = "The Book of Art",
-                        AuthorName = "Test",
-                        Stock = 0
-                    },
-                    new Book
-                    {
-                        ID = 4,
-                        Cover = "4.png",
-                        SellPrice = 26,
-                        ReleaseYear = "2022",
-                        Genre = genre4,
-                        Title = "The Other Side of the Mountain",
-                        AuthorName = "J.K. Rowling",
-                        Stock = 54
-                    },
-                    new Book
-                    {
-                        ID = 5,
-                        Cover = "5.png",
-                        SellPrice = 30,
-                        ReleaseYear = "1920",
-                        Genre = genre1,
-                        Title = "A Million to One",
-                        AuthorName = "Test",
-                        Stock = 58
-                    }
+                    //new Book
+                    //{
+                    //    ID = 2,
+                    //    Cover = "2.png",
+                       
+                    //    ReleaseYear = "2005",
+                    //    Genre = genre2,
+                    //    Title = "Harry Potter and The Lost Child",
+                    //    AuthorName = "J.K. Rowling",
+                    //    Stock = 123
+                    //},
+                    //new Book
+                    //{
+                    //    ID = 3,
+                    //    Cover = "3.png",
+                       
+                    //    ReleaseYear = "2015",
+                    //    Genre = genre3,
+                    //    Title = "The Book of Art",
+                    //    AuthorName = "Test",
+                    //    Stock = 0
+                    //},
+                    //new Book
+                    //{
+                    //    ID = 4,
+                    //    Cover = "4.png",
+                        
+                    //    ReleaseYear = "2022",
+                    //    Genre = genre4,
+                    //    Title = "The Other Side of the Mountain",
+                    //    AuthorName = "J.K. Rowling",
+                    //    Stock = 54
+                    //},
+                    //new Book
+                    //{
+                    //    ID = 5,
+                    //    Cover = "5.png",
+                       
+                    //    ReleaseYear = "1920",
+                    //    Genre = genre1,
+                    //    Title = "A Million to One",
+                    //    AuthorName = "Test",
+                    //    Stock = 58
+                    //}
                 };
 
                 DataProvider<Book> db = new DataProvider<Book>(Book.Collection);

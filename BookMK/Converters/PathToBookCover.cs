@@ -15,42 +15,30 @@ namespace BookMK.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            var imageUrl = value as string;
+            if (!string.IsNullOrEmpty(imageUrl))
+            {
+                // Return the image from URL
+                return new BitmapImage(new Uri(imageUrl));
+            }
+            return LoadImage("BookCoverExample.png");
+
             //string filename = value as string;
-            //BitmapImage bmp = new BitmapImage();
-            //bmp.BeginInit();
-            //bmp.CacheOption = BitmapCacheOption.OnLoad;
-            //bmp.UriSource = new Uri(Path.Combine(ImageStorage.CurrentSolutionLocation, "Images", "BookCoverExample.png"), UriKind.Absolute);
-            //bmp.EndInit();
 
-            //if (!String.IsNullOrEmpty(filename))
+            //if (string.IsNullOrEmpty(filename))
             //{
-            //    if (File.Exists(Path.Combine(ImageStorage.BookImageLocation, filename)) == false)
-            //        return bmp;
-            //    BitmapImage bmp1 = new BitmapImage();
-            //    bmp1.BeginInit();
-            //    bmp1.CacheOption = BitmapCacheOption.OnLoad;
-            //    bmp1.UriSource = new Uri(Path.Combine(ImageStorage.BookImageLocation, filename), UriKind.Absolute);
-            //    bmp1.EndInit();
-            //    return bmp1;
+            //    return LoadImage("BookCoverExample.png");
             //}
-            //return bmp;
 
-            string filename = value as string;
+            //string imagePath = Path.Combine(ImageStorage.BookImageLocation, filename);
 
-            if (string.IsNullOrEmpty(filename))
-            {
-                return LoadImage("BookCoverExample.png");
-            }
+            //if (!File.Exists(imagePath))
+            //{
+            //    // Handle the case when the file doesn't exist
+            //    return LoadImage("BookCoverExample.png");
+            //}
 
-            string imagePath = Path.Combine(ImageStorage.BookImageLocation, filename);
-
-            if (!File.Exists(imagePath))
-            {
-                // Handle the case when the file doesn't exist
-                return LoadImage("BookCoverExample.png");
-            }
-
-            return LoadImage(imagePath);
+            //return LoadImage(imagePath);
         }
 
 

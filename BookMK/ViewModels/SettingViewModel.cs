@@ -68,15 +68,7 @@ namespace BookMK.ViewModels
         public ICommand UpdateLoyalDiscount { get; set; }
         public ICommand UpdateStaff { get; set; }
         public ICommand verify { get;set; }
-        public Discount GetDiscount()
-        {
-            DataProvider<Discount> db = new DataProvider<Discount>(Discount.Collection);
-            FilterDefinition<Discount> filter = Builders<Discount>.Filter.Eq(x => x.ID, 0);
-            List<Discount> b = db.ReadFiltered(filter);
-            if (b.Count() > 0)
-                return b[0];
-            return null;
-        }
+       
 
         public bool IsValidEmail(string email)
         {
@@ -127,16 +119,14 @@ namespace BookMK.ViewModels
         public SettingViewModel() { }
         public SettingViewModel(Staff s)
         {
-           Discount loyal=GetDiscount();
-            this.DiscountAmount = loyal.Value;
-            this.PointMilestone = loyal.PointMileStone;
+          
             _logger.Information("SettingViewModel initialized");
 
             this.CurrentStaff = s;
             
             this.ChangePassword = new ChangePasswordCommand(this,1);
 
-            this.UpdateLoyalDiscount= new UpdateLoyalDiscountCommand(this);
+          
         }
        
 

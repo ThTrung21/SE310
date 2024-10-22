@@ -39,18 +39,8 @@ namespace BookMK.ViewModels.InsertFormViewModels
             get { return _releaseyear; }
             set { _releaseyear = value; OnPropertyChanged(nameof(ReleaseYear)); }
         }
-        private double _sellprice;
-        public double SellPrice
-        {
-            get { return _sellprice; }
-            set { _sellprice = value; OnPropertyChanged(nameof(SellPrice)); }
-        }
-        //private string _author;
-        //public string AuthorName
-        //{
-        //    get { return _author; }
-        //    set { _author = value; OnPropertyChanged(nameof(Author)); }
-        //}
+     
+    
 
         public ObservableCollection<Author> ComboBoxItems { get; set; } = new ObservableCollection<Author>(Author.GetAuthorsList());
 

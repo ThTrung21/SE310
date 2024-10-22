@@ -44,10 +44,7 @@ namespace BookMK.Views.Pages
                 {
                    this.Change_Password.Visibility = Visibility.Collapsed;
                 }
-                if(s.Role!="admin")
-                {
-                    this.LoyalCustomer.Visibility = Visibility.Collapsed;
-                }
+                
             }
             
 

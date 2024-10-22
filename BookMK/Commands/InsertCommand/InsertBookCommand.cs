@@ -38,7 +38,7 @@ namespace BookMK.Commands.InsertCommand
 
         public override async Task ExecuteAsync(object parameter)
         {
-            if (vm.SelectedAuthor == null || vm.Title == null || vm.ReleaseYear == null || vm.SellPrice == 0)
+            if (vm.SelectedAuthor == null || vm.Title == null || vm.ReleaseYear == null)
             {
                 MessageBox.Show("Please fill in every field!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -48,25 +48,26 @@ namespace BookMK.Commands.InsertCommand
             String _Author = vm.SelectedAuthor.Name;
             List<string> _Genre = vm.SelectedGenres;
             String _ReleaseYear = vm.ReleaseYear;
-            Double _SellPrice = vm.SellPrice;
+         
 
-            Book newBook = new Book()
-            {
-                ID = (int)_ID,
-                Cover = _ID + ".png",
-                SellPrice = _SellPrice,
-                ReleaseYear = _ReleaseYear,
-                Genre = _Genre,
-                Title = _Title,
-                AuthorName = _Author,
-                Stock = 0
-            };
+            
 
             try
             {
                 
+                Book newBook = new Book()
+                {
+                    ID = (int)_ID,
+                    Cover = " ",
 
-                if (string.IsNullOrWhiteSpace(_Title) || string.IsNullOrWhiteSpace(_Author) || string.IsNullOrWhiteSpace(_ReleaseYear) || _SellPrice == 0)
+                    ReleaseYear = _ReleaseYear,
+                    Genre = _Genre,
+                    Title = _Title,
+                    AuthorName = _Author,
+                    Stock = 0
+                };
+
+                if (string.IsNullOrWhiteSpace(_Title) || string.IsNullOrWhiteSpace(_Author) || string.IsNullOrWhiteSpace(_ReleaseYear) )
                 {
                     MessageBox.Show("Please fill in every field!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
@@ -92,6 +93,19 @@ namespace BookMK.Commands.InsertCommand
                             Log.Warning("Retry {RetryCount} of inserting book failed. Waiting {TimeSpan} before next retry. Exception: {Exception}", retryCount, timeSpan, exception);
                         });
 
+
+
+
+                // Store image if the file exists
+                string filepath = filename.ToString();
+                string a = _ID.ToString();
+                if (!String.IsNullOrEmpty(filepath) && File.Exists(filepath))
+                {
+                    FirebaseStorageService firebaseStorageService = new FirebaseStorageService();
+                    string imageUrl = await firebaseStorageService.UploadImageAsync(filepath, _ID.ToString());
+                    newBook.Cover = imageUrl;
+                }
+
                 await retryPolicy.ExecuteAsync(async () =>
                 {
                     DataProvider<Book> db = new DataProvider<Book>(Book.Collection);
@@ -99,12 +113,10 @@ namespace BookMK.Commands.InsertCommand
                     operationSucceeded = true;
                 });
 
-                // Store image if the file exists
-                string filepath = filename.ToString();
-                if (!String.IsNullOrEmpty(filepath) && File.Exists(filepath))
-                {
-                    ImageStorage.StoreImage(filepath, ImageStorage.BookImageLocation, newBook.Cover);
-                }
+                
+
+
+
 
                 if (operationSucceeded)
                 {

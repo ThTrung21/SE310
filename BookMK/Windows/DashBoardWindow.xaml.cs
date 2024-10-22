@@ -40,7 +40,7 @@ namespace BookMK.Windows
                 //this.AuthorBtn.Visibility = Visibility.Collapsed;
                 this.StaffBtn.Visibility = Visibility.Collapsed;
                 this.Importbtn.Visibility = Visibility.Collapsed;
-                this.DiscountBtn.Visibility = Visibility.Collapsed;
+               
                 this.HomeBtn.Visibility = Visibility.Collapsed;
             }
         }
@@ -78,10 +78,7 @@ namespace BookMK.Windows
             (this.DataContext as DashBoardViewModel).SwitchImportPage();
         }
 
-        private void DiscountBtn_Checked(object sender, RoutedEventArgs e)
-        {
-            (this.DataContext as DashBoardViewModel).SwitchDiscountPage();
-        }
+        
 
         private void OrderBtn_Checked(object sender, RoutedEventArgs e)
         {

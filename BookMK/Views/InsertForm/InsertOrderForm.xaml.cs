@@ -109,7 +109,7 @@ namespace BookMK.Views.InsertForm
         private void backbtn_Click(object sender, RoutedEventArgs e)
         {
             InsertOrderViewModel vm = this.DataContext as InsertOrderViewModel;
-            vm.SelectedDiscount = null;
+            
             this.AddBook.Visibility = Visibility.Visible;
             this.Proceedbtn.Visibility = Visibility.Visible;
             this.Checkout.Visibility = Visibility.Collapsed;

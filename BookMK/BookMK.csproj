@@ -49,23 +49,32 @@
     <Reference Include="DnsClient, Version=1.6.1.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
       <HintPath>..\packages\DnsClient.1.6.1\lib\net471\DnsClient.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.64.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.64.0\lib\net45\Google.Apis.dll</HintPath>
+    <Reference Include="FirebaseAdmin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=97c8d00c348326ed, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebaseAdmin.3.0.1\lib\net462\FirebaseAdmin.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.64.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.64.0\lib\net461\Google.Apis.Auth.dll</HintPath>
+    <Reference Include="Google.Api.Gax, Version=4.8.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Api.Gax.4.8.0\lib\net462\Google.Api.Gax.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.64.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Auth.1.64.0\lib\net461\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Api.Gax.Rest, Version=4.8.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Api.Gax.Rest.4.8.0\lib\net462\Google.Api.Gax.Rest.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.64.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.Core.1.64.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    <Reference Include="Google.Apis, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.68.0\lib\net462\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.68.0\lib\net462\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.68.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.68.0\lib\net462\Google.Apis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Gmail.v1, Version=1.64.0.3287, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.Gmail.v1.1.64.0.3287\lib\net45\Google.Apis.Gmail.v1.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.64.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Apis.1.64.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.Storage.v1, Version=1.67.0.3365, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Storage.v1.1.67.0.3365\lib\net462\Google.Apis.Storage.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Cloud.Storage.V1, Version=4.10.0.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Cloud.Storage.V1.4.10.0\lib\net462\Google.Cloud.Storage.V1.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
@@ -90,6 +99,9 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.TimeProvider, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.TimeProvider.8.0.0\lib\net462\Microsoft.Bcl.TimeProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
@@ -148,6 +160,9 @@
     </Reference>
     <Reference Include="System.CodeDom, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.CodeDom.7.0.0\lib\net462\System.CodeDom.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
@@ -260,13 +275,11 @@
     <Compile Include="Commands\ChangePasswordCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeleteCommand\DeleteBookCommand.cs" />
-    <Compile Include="Commands\DeleteCommand\DeleteDiscountCommand.cs" />
     <Compile Include="Commands\DummyData\AddBookData.cs" />
     <Compile Include="Commands\InsertCommand\AddItemImportCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertAuthorCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertBookCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertCustomerCommand.cs" />
-    <Compile Include="Commands\InsertCommand\InsertDiscountCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertImportCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertOrderCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertStaffCommand.cs" />
@@ -279,7 +292,6 @@
     <Compile Include="Commands\UpdateCommand\UpdateAuthorCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateBookCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateCustomerCommand.cs" />
-    <Compile Include="Commands\UpdateCommand\UpdateLoyalDiscountCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateStaffCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateStockCommand.cs" />
     <Compile Include="Converters\AbsoluteFileNameToBitmapImage.cs" />
@@ -288,6 +300,7 @@
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\ImportItem.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Service\FirebaseStorageService.cs" />
     <Compile Include="Service\ImageStorage.cs" />
     <Compile Include="Service\ListBoxHelper.cs" />
     <Compile Include="Service\LoginAttemptHelper.cs" />
@@ -302,7 +315,6 @@
     <Compile Include="ViewModels\InsertFormViewModels\AuthorFormViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertBookViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertCustomerViewModel.cs" />
-    <Compile Include="ViewModels\InsertFormViewModels\InsertDiscountViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertImportViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertOrderViewModel.cs" />
     <Compile Include="ViewModels\InsertFormViewModels\InsertStaffViewModel.cs" />
@@ -314,11 +326,9 @@
     <Compile Include="ViewModels\StaffViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="ViewModels\VerifyEmailViewModel.cs" />
-    <Compile Include="ViewModels\ViewForm\DiscountViewModel.cs" />
     <Compile Include="ViewModels\ViewForm\ViewAuthorViewModel.cs" />
     <Compile Include="ViewModels\ViewForm\ViewBookViewModel.cs" />
     <Compile Include="ViewModels\ViewForm\ViewCustomerViewModel.cs" />
-    <Compile Include="ViewModels\ViewForm\ViewDiscountViewModel.cs" />
     <Compile Include="ViewModels\ViewForm\ViewImportViewModel.cs" />
     <Compile Include="ViewModels\ViewForm\ViewOrderViewModel.cs" />
     <Compile Include="ViewModels\ViewForm\ViewStaffViewModel.cs" />
@@ -335,17 +345,11 @@
     <Compile Include="Views\InsertForm\InsertBookForm.xaml.cs">
       <DependentUpon>InsertBookForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InsertForm\InsertDiscountForm.xaml.cs">
-      <DependentUpon>InsertDiscountForm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\InsertForm\InsertImportForm.xaml.cs">
       <DependentUpon>InsertImportForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InsertForm\InsertOrderForm.xaml.cs">
       <DependentUpon>InsertOrderForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Pages\DiscountPage.xaml.cs">
-      <DependentUpon>DiscountPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\ImportPage.xaml.cs">
       <DependentUpon>ImportPage.xaml</DependentUpon>
@@ -358,9 +362,6 @@
     </Compile>
     <Compile Include="Views\ViewForm\ViewCustomerForm.xaml.cs">
       <DependentUpon>ViewCustomerForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ViewForm\ViewDiscountForm.xaml.cs">
-      <DependentUpon>ViewDiscountForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ViewForm\ViewImportView.xaml.cs">
       <DependentUpon>ViewImportView.xaml</DependentUpon>
@@ -426,19 +427,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InsertForm\InsertDiscountForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\InsertForm\InsertImportForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InsertForm\InsertOrderForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Pages\DiscountPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -455,10 +448,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ViewForm\ViewCustomerForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ViewForm\ViewDiscountForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -586,7 +575,6 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DataProvider.cs" />
-    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\Import.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
@@ -610,6 +598,7 @@
     <Resource Include="Fonts\Righteous-Regular.ttf" />
     <Resource Include="Fonts\Inter-Regular.ttf" />
     <Resource Include="Fonts\RobotoMono-Regular.ttf" />
+    <None Include="bookmk-a5859-firebase-adminsdk-bk88j-ff3ea513aa.json" />
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
     <None Include="packages.config" />

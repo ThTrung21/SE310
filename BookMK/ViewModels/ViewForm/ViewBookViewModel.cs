@@ -17,6 +17,8 @@ namespace BookMK.ViewModels.ViewForm
 {
     public class ViewBookViewModel: ViewModelBase
     {
+        private readonly FirebaseStorageService _firebaseStorageService = new FirebaseStorageService();
+
         private static readonly ILogger _logger = Log.ForContext(typeof(ViewBookViewModel));
         private Book _currentBook = new Book();
         public Book CurrentBook
@@ -45,12 +47,7 @@ namespace BookMK.ViewModels.ViewForm
             get { return _releaseyear; }
             set { _releaseyear = value; OnPropertyChanged(nameof(ReleaseYear)); }
         }
-        private double _sellprice;
-        public double SellPrice
-        {
-            get { return _sellprice; }
-            set { _sellprice = value; OnPropertyChanged(nameof(SellPrice)); }
-        }
+        
         private int _stock;
         public int Stock
         {
@@ -82,12 +79,16 @@ namespace BookMK.ViewModels.ViewForm
             _logger.Information("ViewBookViewModel constructor with Book {a} parameter called.",b.ID);
             this.CurrentBook = b;
             this.Filename.Clear();
-            this.Filename.Append(ImageStorage.GetImage(ImageStorage.BookImageLocation, b.Cover));
-           
+            //FirebaseStorageService a = new FirebaseStorageService();
+            this.Filename.Append(b.Cover);
+            
+
+
             this.SaveImageDialog = new SaveImageDialogCommand(Filename, this);
             this.UpdateBook = new UpdateBookCommand(this, Filename);
             this.DeleteBook = new DeleteBookCommand(this, Filename);
 
         }
+      
     }
 }

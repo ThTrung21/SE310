@@ -165,24 +165,7 @@
                             <TextBlock Grid.Column="1" Text="Orders" VerticalAlignment="Center" FontFamily="{StaticResource RobotoMono}" Foreground="White" FontSize="20px" FontWeight="Bold"></TextBlock>
                     </Grid>
                 </RadioButton>
-                    <!--discount btn-->
-                    <RadioButton
-                    Checked="DiscountBtn_Checked"
-                    Name="DiscountBtn"
-                    Style="{StaticResource RadioButtonDashboard}">
-                        <Grid  VerticalAlignment="Center" Width="219" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Kind="CartPercent"  Height="32px" Width="32px"
-                                                 Grid.Column="0"
-                                                 Margin="0 0 8 0"
-                                                 HorizontalAlignment="Right"
-                                                 Foreground="White" />
-                            <TextBlock Grid.Column="1" Text="Discounts" VerticalAlignment="Center" FontFamily="{StaticResource RobotoMono}" Foreground="White" FontSize="20px" FontWeight="Bold"></TextBlock>
-                        </Grid>
-                    </RadioButton>
+                    
 
                     <!--Custoemr btn-->
                 <RadioButton

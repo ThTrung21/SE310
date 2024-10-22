@@ -37,7 +37,7 @@ namespace BookMK
 
 
 
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
+            MongoClient client = new MongoClient("mongodb+srv://trung:XAoFKu8ucSMULjCs@cluster0.mpt8ire.mongodb.net/");
             IMongoDatabase database = client.GetDatabase("BookMK");
 
 
@@ -135,20 +135,7 @@ namespace BookMK
 
 
 
-            var loyaldiscountProvider = new DataProvider<Discount>("discounts");
-            bool discountexists = Discount.IsExistedLoyal();
-            if(!discountexists)
-            {
-                var loyal = new Discount
-                {
-                    ID = 0,
-                    Type="Loyal",
-                    Value = 0,
-                    PointMileStone = 100,
-                    Time=DateTime.Now
-                };
-                loyaldiscountProvider.Insert(loyal);
-            }
+            
             
         }
 

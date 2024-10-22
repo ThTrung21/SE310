@@ -29,11 +29,7 @@ namespace BookMK.Commands.UpdateCommand
         {
             Book _CurrentBook = vm.CurrentBook;
 
-            if (_CurrentBook.SellPrice == 0)
-            {
-                MessageBox.Show("Please change the price!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+          
 
             try
             {
@@ -51,15 +47,16 @@ namespace BookMK.Commands.UpdateCommand
 
                 await retryPolicy.ExecuteAsync(async () =>
                 {
-                    FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, _CurrentBook.ID);
-                    UpdateDefinition<Book> update = Builders<Book>.Update
-                        .Set(x => x.SellPrice, _CurrentBook.SellPrice);
+                    //FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, _CurrentBook.ID);
+                    //UpdateDefinition<Book> update = Builders<Book>.Update
+                    //    .Set(x => x.SellPrice, _CurrentBook.SellPrice);
 
-                    // More attributes to update can be added here
+                    //// More attributes to update can be added here
 
                     DataProvider<Book> db = new DataProvider<Book>(Book.Collection);
-                    await db.UpdateAsync(filter, update);
-                    operationSucceeded = true;
+                    await db.ReadAllAsync();
+                    //await db.UpdateAsync(filter, update);
+                    //operationSucceeded = true;
                 });
 
                 if (operationSucceeded)
@@ -75,7 +72,7 @@ namespace BookMK.Commands.UpdateCommand
                     SimpleCache.Remove($"book_{_CurrentBook.ID}");
 
                     // Log success
-                    Log.Information("Book updated successfully: ID - {BookID}, Title - {Title}, New Sell Price - {SellPrice}", _CurrentBook.ID, _CurrentBook.Title, _CurrentBook.SellPrice);
+                    Log.Information("Book updated successfully: ID - {BookID}, Title - {Title}, New Sell Price - {SellPrice}", _CurrentBook.ID, _CurrentBook.Title);
                 }
                 else
                 {

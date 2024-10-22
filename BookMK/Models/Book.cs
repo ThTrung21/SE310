@@ -29,7 +29,7 @@ namespace BookMK.Models
         public int AuthorID { get; set; }
         public string AuthorName { get; set; }
         
-        public double SellPrice { get; set; }
+        
         public int Stock { get; set; }
         public static string Collection = "books";
 
