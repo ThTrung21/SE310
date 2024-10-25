@@ -16,8 +16,8 @@ namespace BookMK.ViewModels
     public class OrderViewModel:ViewModelBase
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(OrderViewModel));
-        private ObservableCollection<Order> _orders;
-        public ObservableCollection<Order> Orders
+        private ObservableCollection<Borrow> _orders;
+        public ObservableCollection<Borrow> Orders
         {
             get { return _orders; }
             set { _orders = value; OnPropertyChanged(nameof(Orders)); }
@@ -112,15 +112,15 @@ namespace BookMK.ViewModels
         }
         private async Task InitializeAsync()
         {
-            DataProvider<Order> db = new DataProvider<Order>(Order.Collection);
-            List<Order> allorder = await db.ReadAllAsync();
-            this._orders = new ObservableCollection<Order>(allorder);
+            DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+            List<Borrow> allorder = await db.ReadAllAsync();
+            this._orders = new ObservableCollection<Borrow>(allorder);
 
         }
-        public void UpdateOrderList(List<Order> i)
+        public void UpdateOrderList(List<Borrow> i)
         {
             this.Orders.Clear();
-            foreach (Order c in i)
+            foreach (Borrow c in i)
             {
                 Orders.Add(c);
             }
@@ -131,15 +131,15 @@ namespace BookMK.ViewModels
         {
             await Task.Run(async () =>
             {
-                DataProvider<Order> db = new DataProvider<Order>(Order.Collection);
+                DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
                 string searchInput = SearchString.Trim();
-                List<Order> results = new List<Order>();
+                List<Borrow> results = new List<Borrow>();
                 switch (_selectedIndex)
                 {
                     //buyer name
                     case 0:
                         {
-                            FilterDefinition<Order> filter = Builders<Order>.Filter.Regex("CustomerName", new BsonRegularExpression(searchInput, "i"));
+                            FilterDefinition<Borrow> filter = Builders<Borrow>.Filter.Regex("CustomerName", new BsonRegularExpression(searchInput, "i"));
                             results = db.ReadFiltered(filter);
                         }
                         break;
@@ -147,19 +147,14 @@ namespace BookMK.ViewModels
                     //buyer phone
                     case 1:
                         {
-                            FilterDefinition<Order> filter = Builders<Order>.Filter.Regex("CustomerPhone", new BsonRegularExpression(searchInput, "i"));
+                            FilterDefinition<Borrow> filter = Builders<Borrow>.Filter.Regex("CustomerPhone", new BsonRegularExpression(searchInput, "i"));
                             results = db.ReadFiltered(filter);
                         }
                         break;
-                    //case 2:
-                    //    {
-                    //        FilterDefinition<Order> filter = Builders<Order>.Filter.Regex("Time", new BsonRegularExpression(searchInput, "i"));
-                    //        results = db.ReadFiltered(filter);
-                    //    }
-                    //    break;
+                   
                     case 2:
                         {
-                            FilterDefinition<Order> filter = Builders<Order>.Filter.Regex("StaffName", new BsonRegularExpression(searchInput, "i"));
+                            FilterDefinition<Borrow> filter = Builders<Borrow>.Filter.Regex("StaffName", new BsonRegularExpression(searchInput, "i"));
                             results = db.ReadFiltered(filter);
                         }
                         break;
@@ -168,7 +163,7 @@ namespace BookMK.ViewModels
                 }
                 Application.Current.Dispatcher.Invoke(() => {
                     Orders.Clear();
-                    foreach (Order c in results)
+                    foreach (Borrow c in results)
                     {
                         Orders.Add(c);
                     }

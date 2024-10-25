@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BookMK.Models
 {
-    public class Order
+    public class Borrow
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.Int64)]
 
         public int ID { get; set; }
-        public ObservableCollection<OrderItem> Items { get; set; }
+        
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
         public string CustomerPhone { get; set; }
@@ -22,19 +22,19 @@ namespace BookMK.Models
         public int StaffID { get; set; }
         public string StaffName { get; set; }
 
-       
+        public DateTime BorrowDate { get; set; }
+        public DateTime ReturnDate { get; set; }
 
-        public double Total { get; set; }
-        public DateTime Time { get; set; }
+        public List<BookCopy> BorrowedCopies { get; set; }
 
-        public static string Collection = "orders";
+        public static string Collection = "borrows";
 
 
 
         public static int CreateID()
         {
-            DataProvider<Order> db = new DataProvider<Order>(Order.Collection);
-            List<Order> allcs = db.ReadAll().OrderBy(p => p.ID).ToList();
+            DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+            List<Borrow> allcs = db.ReadAll().OrderBy(p => p.ID).ToList();
             int expectedValue = 0;
             foreach (var o in allcs)
             {

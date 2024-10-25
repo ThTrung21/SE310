@@ -8,9 +8,9 @@ namespace BookMK.Commands.UpdateCommand
 {
     internal class UpdateStockCommand : CommandBase
     {
-        private readonly OrderItem b;
+        private readonly BookCopy b;
 
-        public UpdateStockCommand(OrderItem b)
+        public UpdateStockCommand(BookCopy b)
         {
             this.b = b;
         }

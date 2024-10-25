@@ -272,7 +272,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AsyncCommandBase.cs" />
-    <Compile Include="Commands\ChangePasswordCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeleteCommand\DeleteBookCommand.cs" />
     <Compile Include="Commands\DummyData\AddBookData.cs" />
@@ -283,9 +282,7 @@
     <Compile Include="Commands\InsertCommand\InsertImportCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertOrderCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertStaffCommand.cs" />
-    <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Commands\ResetPasswordCommand.cs" />
     <Compile Include="Commands\SaveImageDialogCommand.cs" />
     <Compile Include="Commands\SeedingDatabase.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateAccountCommand.cs" />
@@ -576,8 +573,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DataProvider.cs" />
     <Compile Include="Models\Import.cs" />
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\Borrow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

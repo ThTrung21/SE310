@@ -12,21 +12,21 @@ namespace BookMK.ViewModels.ViewForm
     public class ViewOrderViewModel: ViewModelBase
     {
         private static readonly ILogger _logger = Log.ForContext(typeof(ViewCustomerViewModel));
-        private Order _currentorder = new Order();
-        public Order CurrentOrder
+        private Borrow _currentorder = new Borrow();
+        public Borrow CurrentOrder
         {
             get => _currentorder;
             set { _currentorder = value; OnPropertyChanged(nameof(CurrentOrder)); }
         }
-        private ObservableCollection<OrderItem> _orderitemlist;
-        public ObservableCollection<OrderItem> OrderItemList
+        private ObservableCollection<BookCopy> _orderitemlist;
+        public ObservableCollection<BookCopy> OrderItemList
         {
             get { return _orderitemlist; }
             set { _orderitemlist = value; OnPropertyChanged(nameof(OrderItemList)); }
         }
-        public ViewOrderViewModel(Order i)
+        public ViewOrderViewModel(Borrow i)
         {
-            _logger.Information("ViewAuthorViewModel constructor with Order {a} parameter called.", i.ID);
+            _logger.Information("ViewAuthorViewModel constructor with Borrow {a} parameter called.", i.ID);
             CurrentOrder = i;
 
         }

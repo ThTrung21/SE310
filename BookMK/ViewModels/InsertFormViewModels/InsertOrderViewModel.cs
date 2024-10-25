@@ -51,11 +51,14 @@ namespace BookMK.ViewModels.InsertFormViewModels
         }
         public ObservableCollection<Book> ComboBoxBooks { get; set; } = new ObservableCollection<Book>(Book.GetBooksList());
 
-        
-
-       
-        private ObservableCollection<OrderItem> _orderitemlist;
-        public ObservableCollection<OrderItem> OrderItemList
+        private int _copyId;
+        public int CopyID
+        {
+            get { return _copyId; }
+            set { _copyId = value; OnPropertyChanged(nameof(CopyID)); }
+        }
+        private ObservableCollection<BookCopy> _orderitemlist;
+        public ObservableCollection<BookCopy> OrderItemList
         {
             get { return _orderitemlist; }
             set
@@ -95,13 +98,14 @@ namespace BookMK.ViewModels.InsertFormViewModels
 
 
 
-            // Create a new ImportItem and add it to the ObservableCollection
-            OrderItem newItem = new OrderItem
+            // Create a new bookcopy instance and add it to the ObservableCollection
+            BookCopy newItem = new BookCopy
             {
-                SellBook = this.SelectedBook.Title,
+                //SellBook = this.SelectedBook.Title,
                 BookID = this.SelectedBook.ID,
-                isGifted = false,
-                Quantity = this.AmountInput,
+                //isGifted = false,
+                //Quantity = this.AmountInput,
+
 
             };
 
@@ -109,12 +113,7 @@ namespace BookMK.ViewModels.InsertFormViewModels
 
             //checkstock
             {
-                Book currentbook = Book.GetBook(newItem.BookID);
-                if (currentbook.Stock - newItem.Quantity < 0)
-                {
-                    MessageBox.Show($"{currentbook.Title} stock isn't enough for your purchase", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                
             }
 
 
@@ -126,8 +125,8 @@ namespace BookMK.ViewModels.InsertFormViewModels
             
            
 
-        public ICommand RemoveItemCommand => new RelayCommand<OrderItem>(RemoveItem);
-        private void RemoveItem(OrderItem item)
+        public ICommand RemoveItemCommand => new RelayCommand<BookCopy>(RemoveItem);
+        private void RemoveItem(BookCopy item)
         {
             _logger.Information("RemoveItem method called.");
 
@@ -138,19 +137,19 @@ namespace BookMK.ViewModels.InsertFormViewModels
             while (index < OrderItemList.Count - 1)
             {
                 // Get the item right behind the removed item
-                OrderItem nextItem = OrderItemList[index + 1];
+                BookCopy nextItem = OrderItemList[index + 1];
 
                 // Check if the next item is marked as gifted
-                if (nextItem.isGifted)
-                {
-                    // Remove the next item
-                    OrderItemList.Remove(nextItem);
-                }
-                else
-                {
-                    // If the next item is not marked as gifted, break the loop
-                    break;
-                }
+                //if (nextItem.isGifted)
+                //{
+                //    // Remove the next item
+                //    OrderItemList.Remove(nextItem);
+                //}
+                //else
+                //{
+                //    // If the next item is not marked as gifted, break the loop
+                //    break;
+                //}
             }
 
             // Remove the original item
@@ -189,11 +188,11 @@ namespace BookMK.ViewModels.InsertFormViewModels
 
 
 
-        public void UpdateListItem(ObservableCollection<OrderItem> results)
+        public void UpdateListItem(ObservableCollection<BookCopy> results)
         {
             _logger.Information("UpdateListItem method called.");
             this.OrderItemList.Clear();
-            foreach (OrderItem s in results)
+            foreach (BookCopy s in results)
             {
                 OrderItemList.Add(s);
             }
@@ -212,8 +211,8 @@ namespace BookMK.ViewModels.InsertFormViewModels
             
             
             loyaldiscountflag=false;
-            this.OrderItemList = new ObservableCollection<OrderItem>();
-            this.InsertOrder = new InsertOrderCommand(this, Cashier);
+            this.OrderItemList = new ObservableCollection<BookCopy>();
+           // this.InsertOrder = new InsertOrderCommand(this, Cashier);
         }
         public ICommand InsertOrder { get;set; }
         //public static async Task<InsertOrderViewModel> Initialize()

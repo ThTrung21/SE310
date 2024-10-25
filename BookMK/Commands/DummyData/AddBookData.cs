@@ -26,11 +26,12 @@ namespace BookMK.Commands.DummyData
                     {
                         ID = 1,
                         Cover = "https://firebasestorage.googleapis.com/v0/b/bookmk-a5859.appspot.com/o/BookCover1.jpg?alt=media&token=081b7537-4217-4feb-b842-5640269b1a53",
-                        
+                        ISBN="00000000001",
                         ReleaseYear = "2015",
                         Genre = genre1,
                         Title = "The Old Man and the Sea",
                         AuthorName = "Test",
+                        AuthorID=1,
                         Stock = 12
                     },
                     //new Book

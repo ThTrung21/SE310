@@ -47,7 +47,12 @@ namespace BookMK.ViewModels.ViewForm
             get { return _releaseyear; }
             set { _releaseyear = value; OnPropertyChanged(nameof(ReleaseYear)); }
         }
-        
+        private int _isbn;
+        public int ISBN
+        {
+            get { return _isbn; }
+            set { _isbn = value; OnPropertyChanged(nameof(ISBN)); }
+        }
         private int _stock;
         public int Stock
         {
@@ -66,7 +71,12 @@ namespace BookMK.ViewModels.ViewForm
             get => _filename;
             set { _filename = value; OnPropertyChanged(nameof(Filename)); }
         }
-        
+        private string _cover;
+        public string Cover
+        {
+            get { return _cover; }
+            set { _cover = value; OnPropertyChanged(nameof(Cover)); }
+        }
 
 
         public ICommand UpdateBook { get;set; }
@@ -78,9 +88,9 @@ namespace BookMK.ViewModels.ViewForm
         {
             _logger.Information("ViewBookViewModel constructor with Book {a} parameter called.",b.ID);
             this.CurrentBook = b;
-            this.Filename.Clear();
+            //this.Filename.Clear();
             //FirebaseStorageService a = new FirebaseStorageService();
-            this.Filename.Append(b.Cover);
+            //this.Filename.Append(b.Cover);
             
 
 

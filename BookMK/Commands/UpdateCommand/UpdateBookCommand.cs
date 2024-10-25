@@ -22,7 +22,7 @@ namespace BookMK.Commands.UpdateCommand
         public UpdateBookCommand(ViewBookViewModel vm, StringBuilder filename)
         {
             this.vm = vm;
-            this.filename = filename;
+            
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -47,9 +47,11 @@ namespace BookMK.Commands.UpdateCommand
 
                 await retryPolicy.ExecuteAsync(async () =>
                 {
-                    //FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, _CurrentBook.ID);
-                    //UpdateDefinition<Book> update = Builders<Book>.Update
-                    //    .Set(x => x.SellPrice, _CurrentBook.SellPrice);
+                    FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, _CurrentBook.ID);
+                    UpdateDefinition<Book> update = Builders<Book>.Update
+                        .Set(x => x.ReleaseYear, _CurrentBook.ReleaseYear)
+                        .Set(x => x.Title, _CurrentBook.Title);
+                        
 
                     //// More attributes to update can be added here
 

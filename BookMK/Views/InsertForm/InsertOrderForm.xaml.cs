@@ -67,12 +67,13 @@ namespace BookMK.Views.InsertForm
             {
                 //var selectedItem = ((ListView)sender).SelectedItem as ImportItem;
                 Grid g = sender as Grid;
-                OrderItem i = g.DataContext as OrderItem;
+                BookCopy i = g.DataContext as BookCopy;
                 // Check if an item is selected
                 if (i != null)
                 {
-                    if (i.isGifted == true)
-                        return;
+                    //if (i.isGifted == true)
+                    //    return;
+
                     // Execute the remove command in the ViewModel
                     ((InsertOrderViewModel)DataContext).RemoveItemCommand.Execute(i);
                 }

@@ -17,13 +17,19 @@ namespace BookMK.Models
         [BsonRepresentation(MongoDB.Bson.BsonType.Int64)]
 
         public int ID { get; set; }
-       
+        
+        
+        
+        
         public string Phone { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
-        public int PurchasePoint { get; set; }
-        public bool IsLoyalDiscountReady { get; set; }
+        
+        //public List<int> Borrow { get; set; }
+        
+        //get all of borrow session IDs
+        public List<int> BorrowedIDList { get; set; }
 
         public static string Collection = "customers";
 

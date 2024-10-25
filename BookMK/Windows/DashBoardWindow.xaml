@@ -147,7 +147,7 @@
                     </Grid>
                 </RadioButton>
 
-                <!--Order btn-->
+                <!--Borrow btn-->
                 <RadioButton
                     Name="OrderBtn"
                     Checked="OrderBtn_Checked"

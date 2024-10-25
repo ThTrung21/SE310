@@ -14,6 +14,7 @@
         Title="ViewBookForm" Height="550" Width="930">
     <Window.Resources>
         <converter:AbsoluteFileNameToBitmapImage x:Key="filenameToImage"/>
+        <converter:PathToBookCover x:Key="PathToImage"/>
     </Window.Resources>
 
     <Border
@@ -44,15 +45,22 @@
                         <RowDefinition Height="350"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-
-                    <Rectangle Grid.Row="0"
+                    <Image Grid.Row="0"
+                           Width="270"
+                           Height="340" 
+                           VerticalAlignment="Bottom"
+                            Source="{Binding CurrentBook.Cover, Converter={StaticResource PathToImage}}"
+                            Stretch="Uniform"/>
+                    <!--<Rectangle Grid.Row="0"
                                Width="270"
                                Height="340"
                                VerticalAlignment="Bottom">
-                        <Rectangle.Fill>
-                            <ImageBrush Stretch="Uniform" ImageSource="{Binding Filename, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource filenameToImage}}"></ImageBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
+                        --><!--<Rectangle.Fill>
+                            <ImageBrush Stretch="Uniform" ImageSource="{Binding Cover, 
+                                UpdateSourceTrigger=PropertyChanged,
+                                Converter={StaticResource PathToImage}}"></ImageBrush>
+                        </Rectangle.Fill>--><!--
+                    </Rectangle>-->
 
                     <!--<Button Grid.Row="1"
                             VerticalAlignment="Top"
@@ -89,15 +97,15 @@
                             <RowDefinition Height="20"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Name:"
+                        <TextBlock Text="Title:"
                            Foreground="White"
                            VerticalAlignment="Top"
                            FontSize="20"
                            Grid.Row="0"
                            FontFamily="{StaticResource Inter}"/>
                         <TextBox
-                    IsReadOnly="True"
-                    Cursor="No"       
+                    IsReadOnly="False"
+                       
                     Text="{Binding CurrentBook.Title,UpdateSourceTrigger=PropertyChanged}"
                     Grid.Row="1" 
                     FontSize="18"
@@ -154,8 +162,8 @@
                             <TextBox
                                     Text="{Binding CurrentBook.ReleaseYear,UpdateSourceTrigger=PropertyChanged}"
                                     Grid.Row="1" 
-                                    Cursor="No"
-                                    IsReadOnly="True"
+                                    
+                                    IsReadOnly="False"
                                     FontSize="18"
                                     Margin="0 10 0 0"
                                     Height="44"    
@@ -202,7 +210,23 @@
                                 <RowDefinition Height="24"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            
+                            <TextBlock Text="ISBN:"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   FontSize="20"
+                                   Grid.Row="0"
+              
+                                   FontFamily="{StaticResource Inter}"/>
+                                <TextBox  
+                                    Text="{Binding CurrentBook.ISBN,UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Row="1" 
+                                    FontSize="18"
+                                    Margin="0 10 10 0"
+                                    Height="44"    
+                                    TextAlignment="Left"
+                                    VerticalAlignment="top"  
+                                    MaxLength="50"
+                                    Style="{StaticResource FilledTextBox}"/>
                         </Grid>
                     </Grid>
                   

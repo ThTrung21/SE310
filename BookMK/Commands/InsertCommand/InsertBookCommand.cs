@@ -48,7 +48,7 @@ namespace BookMK.Commands.InsertCommand
             String _Author = vm.SelectedAuthor.Name;
             List<string> _Genre = vm.SelectedGenres;
             String _ReleaseYear = vm.ReleaseYear;
-         
+            String _ISBN=vm.ISBN;
 
             
 
@@ -59,7 +59,7 @@ namespace BookMK.Commands.InsertCommand
                 {
                     ID = (int)_ID,
                     Cover = " ",
-
+                    ISBN=_ISBN,
                     ReleaseYear = _ReleaseYear,
                     Genre = _Genre,
                     Title = _Title,

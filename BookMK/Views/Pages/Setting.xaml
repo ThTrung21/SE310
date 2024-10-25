@@ -174,7 +174,7 @@
             
             <!--change pass-->
             <Grid
-             Margin="36 0 0 0"
+             Margin="36 18 0 0"
             Name="Change_Password"
             >
                 <Grid.RowDefinitions>

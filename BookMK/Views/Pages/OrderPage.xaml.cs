@@ -45,8 +45,8 @@ namespace BookMK.Views.Pages
         {
             InsertOrderForm f = new InsertOrderForm(s);
             f.ShowDialog();
-            DataProvider<Order> db = new DataProvider<Order>(Order.Collection);
-            List<Order> results = await db.ReadAllAsync();
+            DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+            List<Borrow> results = await db.ReadAllAsync();
             (this.DataContext as OrderViewModel).UpdateOrderList(results);
         }
         private DateTime _lastClickTime;
@@ -55,7 +55,7 @@ namespace BookMK.Views.Pages
             if ((DateTime.Now - _lastClickTime).TotalMilliseconds < 500)
             {
                 Grid g = sender as Grid;
-                Order s = g.DataContext as Order;
+                Borrow s = g.DataContext as Borrow;
                 
                    
                 ViewOrderForm f = new ViewOrderForm(s);

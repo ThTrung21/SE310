@@ -89,8 +89,8 @@ namespace BookMK
                     FullName = "Walk-in Customers",
                     Email = "",
                     Address = "",
-                    IsLoyalDiscountReady = false,
-                    PurchasePoint = 0
+                    //IsLoyalDiscountReady = false,
+                    //PurchasePoint = 0
                     
                 };
 

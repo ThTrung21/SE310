@@ -33,6 +33,15 @@ namespace BookMK.ViewModels.InsertFormViewModels
             }
             set { _title = value; OnPropertyChanged(nameof(Title)); }
         }
+        private string _isbn;
+        public string ISBN
+        {
+            get
+            {
+                return _isbn;
+            }
+            set { _isbn = value; OnPropertyChanged(nameof(ISBN)); }
+        }
         private string _releaseyear;
         public string ReleaseYear
         {

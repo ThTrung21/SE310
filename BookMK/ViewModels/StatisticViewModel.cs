@@ -87,42 +87,42 @@ namespace BookMK.ViewModels
 
         private void InitializeSeriesCollection()
         {
-            _logger.Information("Initializing SeriesCollection.");
-            SeriesCollection = new SeriesCollection();
+            //_logger.Information("Initializing SeriesCollection.");
+            //SeriesCollection = new SeriesCollection();
 
-            try
-            {
-                var salesData = GetSalesDataForLast30Days();
-                AllDatesInLast30Days = GetDaysInLast30Days();
-                XAxisLabels = AllDatesInLast30Days.Select(date => date.ToString("dd")).ToList();
+            //try
+            //{
+            //    var salesData = GetSalesDataForLast30Days();
+            //    AllDatesInLast30Days = GetDaysInLast30Days();
+            //    XAxisLabels = AllDatesInLast30Days.Select(date => date.ToString("dd")).ToList();
 
-                foreach (Order order in salesData)
-                {
-                    TotalMonth += order.Total;
-                }
+            //    foreach (Borrow order in salesData)
+            //    {
+            //        TotalMonth += order.Total;
+            //    }
 
-                var dayRevenuePairs = AllDatesInLast30Days
-                  .Select((day, index) => new
-                  {
-                      Day = index,
-                      Revenue = salesData.Where(order => order.Time.Date == day.Date).Sum(order => order.Total)
-                  });
+            //    var dayRevenuePairs = AllDatesInLast30Days
+            //      .Select((day, index) => new
+            //      {
+            //          Day = index,
+            //          Revenue = salesData.Where(order => order.Time.Date == day.Date).Sum(order => order.Total)
+            //      });
 
-                var barSeries = new ColumnSeries
-                {
-                    Title = "Revenue: ",
-                    Values = new ChartValues<ObservablePoint>(
-                        dayRevenuePairs.Select(pair => new ObservablePoint(pair.Day, pair.Revenue))
-                    )
-                };
+            //    var barSeries = new ColumnSeries
+            //    {
+            //        Title = "Revenue: ",
+            //        Values = new ChartValues<ObservablePoint>(
+            //            dayRevenuePairs.Select(pair => new ObservablePoint(pair.Day, pair.Revenue))
+            //        )
+            //    };
 
-                SeriesCollection.Add(barSeries);
-                _logger.Information("SeriesCollection initialized successfully.");
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex, "An error occurred while initializing SeriesCollection.");
-            }
+            //    SeriesCollection.Add(barSeries);
+            //    _logger.Information("SeriesCollection initialized successfully.");
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.Error(ex, "An error occurred while initializing SeriesCollection.");
+            //}
         }
 
         private void InitializeSeriesPie()
@@ -199,25 +199,25 @@ namespace BookMK.ViewModels
             }
         }
 
-        private List<Order> GetSalesDataForLast30Days()
+        private List<Borrow> GetSalesDataForLast30Days()
         {
             _logger.Information("Fetching sales data for the last 30 days.");
 
-            try
-            {
-                DataProvider<Order> db = new DataProvider<Order>(Order.Collection);
-                DateTime startDate = DateTime.Now.Date.AddDays(-30);
-                FilterDefinition<Order> filter = Builders<Order>.Filter.Gte(x => x.Time, startDate);
-                List<Order> ordersInLast30Days = db.ReadFiltered(filter);
+            //try
+            //{
+            //    DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+            //    DateTime startDate = DateTime.Now.Date.AddDays(-30);
+            //    FilterDefinition<Borrow> filter = Builders<Borrow>.Filter.Gte(x => x.Time, startDate);
+            //    List<Borrow> ordersInLast30Days = db.ReadFiltered(filter);
 
-                _logger.Information("Fetched sales data for the last 30 days successfully.");
-                return ordersInLast30Days;
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex, "An error occurred while fetching sales data for the last 30 days.");
-                return new List<Order>();
-            }
+            //    _logger.Information("Fetched sales data for the last 30 days successfully.");
+            //    return ordersInLast30Days;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.Error(ex, "An error occurred while fetching sales data for the last 30 days.");
+                return new List<Borrow>();
+            //}
         }
 
         private List<DateTime> GetDaysInLast30Days()
@@ -265,31 +265,31 @@ namespace BookMK.ViewModels
             }
         }
 
-        private List<Order> GetSalesDataForCurrentMonth()
+        private List<Book> GetSalesDataForCurrentMonth()
         {
             _logger.Information("Fetching sales data for the current month.");
 
-            try
-            {
-                DataProvider<Order> db = new DataProvider<Order>(Order.Collection);
-                DateTime startOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                DateTime startOfNextMonth = startOfMonth.AddMonths(1);
+            //try
+            //{
+            //    DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+            //    DateTime startOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            //    DateTime startOfNextMonth = startOfMonth.AddMonths(1);
 
-                FilterDefinition<Order> filter = Builders<Order>.Filter.And(
-                    Builders<Order>.Filter.Gte(x => x.Time, startOfMonth),
-                    Builders<Order>.Filter.Lt(x => x.Time, startOfNextMonth)
-                );
+            //    FilterDefinition<Borrow> filter = Builders<Borrow>.Filter.And(
+            //        Builders<Borrow>.Filter.Gte(x => x.Time, startOfMonth),
+            //        Builders<Borrow>.Filter.Lt(x => x.Time, startOfNextMonth)
+            //    );
 
-                List<Order> ordersInCurrentMonth = db.ReadFiltered(filter);
+            //    List<Borrow> ordersInCurrentMonth = db.ReadFiltered(filter);
 
-                _logger.Information("Fetched sales data for the current month successfully.");
-                return ordersInCurrentMonth;
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex, "An error occurred while fetching sales data for the current month.");
-                return new List<Order>();
-            }
+            //    _logger.Information("Fetched sales data for the current month successfully.");
+            //    return ordersInCurrentMonth;
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.Error(ex, "An error occurred while fetching sales data for the current month.");
+                return new List<Book>();
+            //}
         }
 
         private List<Book> GetBooksSoldInCurrentMonth()
@@ -298,20 +298,20 @@ namespace BookMK.ViewModels
 
             try
             {
-                List<Order> currentSales = GetSalesDataForLast30Days();
+                List<Borrow> currentSales = GetSalesDataForLast30Days();
                 List<Book> booksSoldCurrent = new List<Book>();
 
-                foreach (Order order in currentSales)
-                {
-                    foreach (OrderItem item in order.Items)
-                    {
-                        for (int k = 0; k < item.Quantity; k++)
-                        {
-                            if (!item.isGifted)
-                                booksSoldCurrent.Add(Book.GetBook(item.BookID));
-                        }
-                    }
-                }
+                //foreach (Borrow order in currentSales)
+                //{
+                //    foreach (BookCopy item in order.Items)
+                //    {
+                //        for (int k = 0; k < item.Quantity; k++)
+                //        {
+                //            if (!item.isGifted)
+                //                booksSoldCurrent.Add(Book.GetBook(item.BookID));
+                //        }
+                //    }
+                //}
 
                 _logger.Information("Fetched books sold in the current month successfully.");
                 return booksSoldCurrent;

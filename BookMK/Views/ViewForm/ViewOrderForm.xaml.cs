@@ -25,7 +25,7 @@ namespace BookMK.Views.ViewForm
         {
             InitializeComponent();
         }
-        public ViewOrderForm(Order o)
+        public ViewOrderForm(Borrow o)
         {
             InitializeComponent();
             this.DataContext = new ViewOrderViewModel(o);
