@@ -25,7 +25,7 @@ namespace BookMK.Commands.DummyData
                     new Book
                     {
                         ID = 1,
-                        Cover = "https://firebasestorage.googleapis.com/v0/b/bookmk-a5859.appspot.com/o/BookCover1.jpg?alt=media&token=081b7537-4217-4feb-b842-5640269b1a53",
+                        Cover = "https://firebasestorage.googleapis.com/v0/b/bookmk-3de98.appspot.com/o/BookCover1.jpg?alt=media&token=c3e91597-a86e-4beb-84e6-c8befce6b4cb",
                         ISBN="00000000001",
                         ReleaseYear = "2015",
                         Genre = genre1,

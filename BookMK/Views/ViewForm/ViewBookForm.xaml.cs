@@ -37,10 +37,13 @@ namespace BookMK.Views.ViewForm
             s = loggedinS;
             if (s.Role != "admin")
             {
-                this.InsertBtn.Visibility = Visibility.Collapsed;
-               
+                this.InsertBtn.Visibility = Visibility.Collapsed;    
+             
             }
-            this.DataContext = new ViewBookViewModel(b);
+            this.DataContext = new ViewBookViewModel(b, s.Role);
+
+
+            
         }
 
         private void CloseBtn_MouseUp(object sender, MouseButtonEventArgs e)
@@ -57,6 +60,7 @@ namespace BookMK.Views.ViewForm
             }
         }
 
-       
+        
+
     }
 }

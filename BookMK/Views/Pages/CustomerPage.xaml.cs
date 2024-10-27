@@ -29,7 +29,7 @@ namespace BookMK.Views.Pages
         public CustomerPage()
         {
             InitializeComponent();
-            ComboboxFilter.ItemsSource = new List<string>() {"Name", "Phone" };
+            ComboboxFilter.ItemsSource = new List<string>() {"Name", "Phone","ID" };
 
             
         }

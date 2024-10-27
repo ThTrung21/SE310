@@ -23,6 +23,7 @@ namespace BookMK.Commands.UpdateCommand
         {
             this.vm = vm;
             
+            
         }
 
         public override async Task ExecuteAsync(object parameter)
@@ -34,19 +35,12 @@ namespace BookMK.Commands.UpdateCommand
             try
             {
                 // Add to cache before attempting to update
-                SimpleCache.AddOrUpdate($"book_{_CurrentBook.ID}", _CurrentBook);
+               
 
                 // Define retry policy with exponential backoff
-                var retryPolicy = Policy
-                    .Handle<Exception>()
-                    .WaitAndRetryAsync(3, attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)),
-                        (exception, timeSpan, retryCount, context) =>
-                        {
-                            Log.Warning("Retry {RetryCount} of updating book failed. Waiting {TimeSpan} before next retry. Exception: {Exception}", retryCount, timeSpan, exception);
-                        });
+                
 
-                await retryPolicy.ExecuteAsync(async () =>
-                {
+               
                     FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, _CurrentBook.ID);
                     UpdateDefinition<Book> update = Builders<Book>.Update
                         .Set(x => x.ReleaseYear, _CurrentBook.ReleaseYear)
@@ -59,31 +53,9 @@ namespace BookMK.Commands.UpdateCommand
                     await db.ReadAllAsync();
                     //await db.UpdateAsync(filter, update);
                     //operationSucceeded = true;
-                });
+                
 
-                if (operationSucceeded)
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        MessageBox.Show("Book updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                        Window f = parameter as Window;
-                        f?.Close();
-                    });
-
-                    // Remove from cache after successful update
-                    SimpleCache.Remove($"book_{_CurrentBook.ID}");
-
-                    // Log success
-                    Log.Information("Book updated successfully: ID - {BookID}, Title - {Title}, New Sell Price - {SellPrice}", _CurrentBook.ID, _CurrentBook.Title);
-                }
-                else
-                {
-                    // Notify user after all retries failed
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        MessageBox.Show("Failed to update the book after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    });
-                }
+                
             }
             catch (Exception ex)
             {

@@ -91,7 +91,7 @@
                 </Grid>
 
                 <!--Home btn-->
-                <RadioButton
+                <!--<RadioButton
                     Name="HomeBtn"
                     Checked="HomeBtn_Checked"
                     Style="{StaticResource RadioButtonDashboard}">
@@ -107,7 +107,7 @@
                                                  Foreground="White" />
                         <TextBlock Grid.Column="1" Text="Statistic" VerticalAlignment="Center" FontFamily="{StaticResource RobotoMono}" Foreground="White" FontSize="20px" FontWeight="Bold"></TextBlock>
                     </Grid>
-                </RadioButton>
+                </RadioButton>-->
 
                 <!--Book btn-->
                 <RadioButton
@@ -148,7 +148,7 @@
                 </RadioButton>
 
                 <!--Borrow btn-->
-                <RadioButton
+                <!--<RadioButton
                     Name="OrderBtn"
                     Checked="OrderBtn_Checked"
                     Style="{StaticResource RadioButtonDashboard}">
@@ -164,7 +164,7 @@
                                                  Foreground="White" />
                             <TextBlock Grid.Column="1" Text="Orders" VerticalAlignment="Center" FontFamily="{StaticResource RobotoMono}" Foreground="White" FontSize="20px" FontWeight="Bold"></TextBlock>
                     </Grid>
-                </RadioButton>
+                </RadioButton>-->
                     
 
                     <!--Custoemr btn-->

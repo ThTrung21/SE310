@@ -71,19 +71,19 @@ namespace BookMK.ViewModels
                 OnPropertyChanged(nameof(Phone));
             }
         }
-        private int _purchasepoint;
-        public int PurchasePoint
-        {
-            get
-            {
-                return _purchasepoint;
-            }
-            set
-            {
-                _purchasepoint = value;
-                OnPropertyChanged(nameof(PurchasePoint));
-            }
-        }
+        //private int _purchasepoint;
+        //public int PurchasePoint
+        //{
+        //    get
+        //    {
+        //        return _purchasepoint;
+        //    }
+        //    set
+        //    {
+        //        _purchasepoint = value;
+        //        OnPropertyChanged(nameof(PurchasePoint));
+        //    }
+        //}
         private bool _isverified;
         public bool IsVerified
         {
@@ -156,6 +156,12 @@ namespace BookMK.ViewModels
                     case 1:
                         {
                             FilterDefinition<Customer> filter = Builders<Customer>.Filter.Regex("Phone", new BsonRegularExpression(searchInput, "i"));
+                            results = db.ReadFiltered(filter);
+                        }
+                        break;
+                    case 2:
+                        {
+                            FilterDefinition<Customer> filter = Builders<Customer>.Filter.Regex("_id", new BsonRegularExpression(searchInput, "i"));
                             results = db.ReadFiltered(filter);
                         }
                         break;

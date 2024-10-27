@@ -93,12 +93,12 @@ namespace BookMK.Commands
 
             try
             {
-                _logger.Information("Hashing password for user {Username}", username);
+               
                 string hashedPassword = HashPassword(password);
-                _logger.Information("Password hashed successfully for user {Username}", username);
+               
 
                 DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
-                _logger.Information("Querying database for user {Username}", username);
+               
 
                 FilterDefinition<Staff> filterLogin = Builders<Staff>.Filter.Where(s => s.Username == username && s.PasswordHash == hashedPassword);
                 var matchingStaff = db.ReadFiltered(filterLogin);
@@ -122,16 +122,16 @@ namespace BookMK.Commands
                 {
                     if (loginAttempts.ContainsKey(username))
                     {
-                        loginAttempts[username] = (loginAttempts[username].FailedAttempts + 1, DateTime.Now);
+                        //loginAttempts[username] = (loginAttempts[username].FailedAttempts + 1, DateTime.Now);
                     }
                     else
                     {
-                        loginAttempts[username] = (1, DateTime.Now);
+                        //loginAttempts[username] = (1, DateTime.Now);
                     }
 
                     LoginAttemptHelper.SaveLoginAttempts(loginAttempts);
 
-                    _logger.Warning("Incorrect password attempt for user {Username}. Attempt {AttemptNumber}", username, loginAttempts[username].FailedAttempts);
+                    //_logger.Warning("Incorrect password attempt for user {Username}. Attempt {AttemptNumber}", username, loginAttempts[username].FailedAttempts);
                     MessageBox.Show("Incorrect password!");
                 }
             }

@@ -272,6 +272,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AsyncCommandBase.cs" />
+    <Compile Include="Commands\ChangePasswordCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\DeleteCommand\DeleteBookCommand.cs" />
     <Compile Include="Commands\DummyData\AddBookData.cs" />
@@ -282,7 +283,9 @@
     <Compile Include="Commands\InsertCommand\InsertImportCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertOrderCommand.cs" />
     <Compile Include="Commands\InsertCommand\InsertStaffCommand.cs" />
+    <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Commands\ResetPasswordCommand.cs" />
     <Compile Include="Commands\SaveImageDialogCommand.cs" />
     <Compile Include="Commands\SeedingDatabase.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateAccountCommand.cs" />
@@ -594,7 +597,6 @@
     <Resource Include="Fonts\Righteous-Regular.ttf" />
     <Resource Include="Fonts\Inter-Regular.ttf" />
     <Resource Include="Fonts\RobotoMono-Regular.ttf" />
-    <None Include="bookmk-a5859-firebase-adminsdk-bk88j-ff3ea513aa.json" />
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
     <None Include="packages.config" />

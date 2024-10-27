@@ -175,6 +175,7 @@ namespace BookMK.ViewModels.InsertFormViewModels
                 // Simulate an asynchronous operation
                 await Task.Delay(1000);
                 ID = Import.CreateID();
+
                 this.ImportItemList = new ObservableCollection<ImportItem>();
                 InsertImport = new InsertImportCommand(this);
                 _logger.Information("Asynchronous initialization of InsertImportViewModel completed.");

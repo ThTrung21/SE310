@@ -41,7 +41,7 @@ namespace BookMK.Windows
                 this.StaffBtn.Visibility = Visibility.Collapsed;
                 this.Importbtn.Visibility = Visibility.Collapsed;
                
-                this.HomeBtn.Visibility = Visibility.Collapsed;
+                //this.HomeBtn.Visibility = Visibility.Collapsed;
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)

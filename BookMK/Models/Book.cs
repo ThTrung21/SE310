@@ -14,8 +14,14 @@ namespace BookMK.Models
     public enum CONDITION
     {
         New,
-        Good,
+        OK,
         Damaged,
+    }
+    public enum STATUS
+    {
+        Available,
+        Borrowing,
+        Overdue,
     }
     public class Book
     {
@@ -139,7 +145,7 @@ namespace BookMK.Models
     }
 
 
-    public class BookCopy : Book
+    public class BookCopy
     {
 
         
@@ -151,18 +157,41 @@ namespace BookMK.Models
         public int CopyID { get; set; }//the id of the copy in one title
         public int BookID { get; set; } // Reference to the main Book
         public CONDITION Condition { get; set; } // e.g., New, Good, Damaged
-        public bool IsAvailable { get; set; } // Whether the copy is currently available
-        public DateTime? BorrowedDate { get; set; }
-        public DateTime? DueDate { get; set; }
+        public STATUS Availability { get; set; } // Whether the copy is currently available
+        //public DateTime? BorrowedDate { get; set; }
+        //public DateTime? DueDate { get; set; }
         public int? BorrowerID { get; set; }
 
-        public static string Collection = "bookcopies";
+        public bool IsRetire { get; set; }
 
+        public static string Collection = "bookcopies";
+        
 
         public static int CreateID()
         {
             DataProvider<BookCopy> db = new DataProvider<BookCopy>(BookCopy.Collection);
             List<BookCopy> allcs = db.ReadAll().OrderBy(p => p.ID).ToList();
+            int expectedValue = 1;
+            foreach (var o in allcs)
+            {
+                int num = o.ID;
+                if (num == expectedValue)
+                {
+                    // Increment the expected value if it matches the current number
+                    expectedValue++;
+                }
+                else
+                {
+                    // Found the smallest missing integer
+                    return expectedValue;
+                }
+            }
+            return expectedValue;
+        }
+        public static int CreateCopyID(int BookID)
+        {
+            DataProvider<BookCopy> db = new DataProvider<BookCopy>(BookCopy.Collection);
+            List<BookCopy> allcs = db.ReadAll().Where(a=>a.BookID==BookID).OrderBy(p => p.ID).ToList();
             int expectedValue = 1;
             foreach (var o in allcs)
             {

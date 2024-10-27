@@ -71,19 +71,19 @@ namespace BookMK.ViewModels.ViewForm
                 OnPropertyChanged(nameof(Address));
             }
         }
-        private string _purchasepoint;
-        public string PurchasePoint
-        {
-            get
-            {
-                return _purchasepoint;
-            }
-            set
-            {
-                _purchasepoint= value;
-                OnPropertyChanged(nameof(PurchasePoint));
-            }
-        }
+        //private string _purchasepoint;
+        //public string PurchasePoint
+        //{
+        //    get
+        //    {
+        //        return _purchasepoint;
+        //    }
+        //    set
+        //    {
+        //        _purchasepoint= value;
+        //        OnPropertyChanged(nameof(PurchasePoint));
+        //    }
+        //}
         public ICommand UpdateCustomer { get; set; }
 
         public ViewCustomerViewModel()

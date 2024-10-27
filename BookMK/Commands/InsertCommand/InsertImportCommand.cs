@@ -47,13 +47,7 @@ namespace BookMK.Commands.InsertCommand
 
 
 
-                var retryPolicy = Policy
-                    .Handle<Exception>()
-                    .WaitAndRetryAsync(3, attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)),
-                        (exception, timeSpan, retryCount, context) =>
-                        {
-                            Log.Warning("Retry {RetryCount} of update user failed. Waiting {TimeSpan} before next retry. Exception: {Exception}", retryCount, timeSpan, exception);
-                        });
+               
 
                 // Update books info
                 foreach (var item in vm.ImportItemList)
@@ -68,7 +62,7 @@ namespace BookMK.Commands.InsertCommand
                         Book target = Book.GetBook(currentid);
                        
 
-                        if (target.Stock + amount > 200)
+                        if (target.Stock + amount > 100)
                         {
                             MessageBox.Show($"{target.Title} still has too much in stock. Cannot add to import.", "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                             return;
@@ -78,21 +72,43 @@ namespace BookMK.Commands.InsertCommand
 
                         FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, currentid);
                         UpdateDefinition<Book> update = Builders<Book>.Update.Inc(x => x.Stock, amount);
-                        
-                            DataProvider<Book> importbookdb = new DataProvider<Book>(Book.Collection);
+                        DataProvider<Book> importbookdb = new DataProvider<Book>(Book.Collection);
                         importbookdb.Update(filter, update);
                         
+                        DataProvider<BookCopy> copydb=new DataProvider<BookCopy>(BookCopy.Collection);
+
+                        int currentMaxCopyID = copydb.ReadAll()
+                                  .Where(a => a.BookID == currentid)
+                                  .Max(p => (int?)p.CopyID) ?? 0;
+
+                        for (int amountCount = 0; amountCount < amount; amountCount++)
+                        {
+                            currentMaxCopyID++;  // Increment for the new copy
+                            BookCopy bookCopy = new BookCopy()
+                            {
+                                ID = BookCopy.CreateID(),
+                                BookID = currentid,
+                                CopyID = currentMaxCopyID, // Use the locally incremented CopyID
+                                Condition = CONDITION.New,
+                                Availability = STATUS.Available,
+                                BorrowerID = -1,
+                                IsRetire = false
+                            };
+
+                            await copydb.InsertOneAsync(bookCopy);
+                        }
+
+
                     }
                     catch (Exception ex)
                     {
                         
                     }
                 }
-                await retryPolicy.ExecuteAsync(async () =>
-                {
+               
                     DataProvider<Import> db = new DataProvider<Import>(Import.Collection);
                     await db.InsertOneAsync(i);  operationSucceeded = true;
-                });
+               
 
 
                 if (operationSucceeded)

@@ -168,7 +168,7 @@
                             BorderBrush="White"
                             BorderThickness="0 0 2 2">
                         <TextBlock 
-                               Text="Points"
+                               Text="Overdue"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                FontFamily="{StaticResource RobotoMono}"
@@ -257,14 +257,14 @@
                                      
                                                FontSize="20"/>
                                     </Border>
-                                    <TextBlock Grid.Column="3"
+                                    <!--<TextBlock Grid.Column="3"
                                                Foreground="#99AAB5"
                                                Padding="10 0"
                                                VerticalAlignment="Center" 
                                                HorizontalAlignment="Center"
                                                Name="itemPoints"
                                                Text="{Binding PurchasePoint}" FontFamily="{StaticResource Inter}" 
-                                               FontSize="20"/>
+                                               FontSize="20"/>-->
 
                                 </Grid>
 

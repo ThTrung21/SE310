@@ -89,9 +89,8 @@ namespace BookMK
                     FullName = "Walk-in Customers",
                     Email = "",
                     Address = "",
-                    //IsLoyalDiscountReady = false,
-                    //PurchasePoint = 0
-                    
+                    BorrowedIDList = null,
+
                 };
 
                 // Insert the admin account into the database

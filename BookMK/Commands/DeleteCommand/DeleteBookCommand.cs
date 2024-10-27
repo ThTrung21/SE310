@@ -26,23 +26,24 @@ namespace BookMK.Commands.DeleteCommand
         public override async Task ExecuteAsync(object parameter)
         {
             Book currentBook = _vm.CurrentBook;
-            string filepath = _filename.ToString();
+            
 
             MessageBoxResult asking = MessageBox.Show("Are you sure you want to DELETE?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (asking == MessageBoxResult.No) return;
 
             try
             {
+                FirebaseStorageService service = new FirebaseStorageService();
+                await service.DeleteImageAsync(currentBook.ID);
                 await Task.Run(() =>
                 {
+                    
+                   
                     FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, currentBook.ID);
                     DataProvider<Book> db = new DataProvider<Book>(Book.Collection);
                     db.Delete(filter);
 
-                    if (!string.IsNullOrEmpty(filepath))
-                    {
-                        ImageStorage.DeleteImage(ImageStorage.BookImageLocation, filepath);
-                    }
+                    
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {

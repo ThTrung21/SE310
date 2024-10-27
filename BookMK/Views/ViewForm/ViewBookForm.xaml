@@ -51,37 +51,32 @@
                            VerticalAlignment="Bottom"
                             Source="{Binding CurrentBook.Cover, Converter={StaticResource PathToImage}}"
                             Stretch="Uniform"/>
-                    <!--<Rectangle Grid.Row="0"
-                               Width="270"
-                               Height="340"
-                               VerticalAlignment="Bottom">
-                        --><!--<Rectangle.Fill>
-                            <ImageBrush Stretch="Uniform" ImageSource="{Binding Cover, 
-                                UpdateSourceTrigger=PropertyChanged,
-                                Converter={StaticResource PathToImage}}"></ImageBrush>
-                        </Rectangle.Fill>--><!--
-                    </Rectangle>-->
+                    <Grid Grid.Row="1"
+                          Margin="8 32 32 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock  Text="Genres:"
+                                    Foreground="White"
+                                    VerticalAlignment="Top"
+                                    FontSize="20"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource Inter}"/>
+                        <ListBox 
+                            Grid.Column="1"
+                            Margin="0 0 0 0"
+                            FontWeight="Bold"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                            ItemContainerStyle="{StaticResource HighlightListBoxItemStyle}" 
+                            ItemsSource="{Binding CurrentBook.Genre}"
+                            Foreground="White"
+                            FontSize="18"
+                            FontFamily="{StaticResource Inter}"
+                            x:Name="AvailableListBox"  
+                            SelectionMode="Single" />
 
-                    <!--<Button Grid.Row="1"
-                            VerticalAlignment="Top"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            Cursor="Hand"
-                            Width="130"
-                            Padding="0"
-                            
-                            Content="Change Cover"
-                            Command="{Binding SaveImageDialog}"
-                            >
-                        <Button.ContentTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" 
-                                           FontFamily="{StaticResource Inter}"
-                                           Foreground="#5876DF"
-                                           TextDecorations="Underline"/>
-                            </DataTemplate>
-                        </Button.ContentTemplate>
-                    </Button>-->
+                    </Grid>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -251,16 +246,16 @@
                     <Grid
                         Grid.Row="3">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="24"/>
                             <RowDefinition/>
                            
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Genres:"
+                        <TextBlock Text="Copies:"
                                    Foreground="White"
                                    VerticalAlignment="Top"
                                    FontSize="20"
                                    Grid.Row="0"
-                                      
+                                    
                                    FontFamily="{StaticResource Inter}"/>
 
                         <Grid
@@ -274,7 +269,7 @@
                                 BorderBrush="White"
                                 BorderThickness="2"
                                 CornerRadius="15">
-                                <ListBox 
+                                <!--<ListBox 
                                     
                     
                                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -284,7 +279,7 @@
                                     FontSize="18"
                                     FontFamily="{StaticResource Inter}"
                                     x:Name="AvailableListBox"  
-                                    SelectionMode="Single" />
+                                    SelectionMode="Single" />-->
                             </Border>
                             <!--<StackPanel Grid.Column="1" VerticalAlignment="Center">
                                 <Button  Style="{StaticResource RoundedButtonStyle}" Content="&gt;" FontSize="20"  Width="40" Margin="0,5" Name="AddGenre" Click="AddGenre_Click"/>
@@ -293,31 +288,260 @@
                             
                         </Grid>
 
-                        <!--<Border
+                        <Border
                             Margin="0 4"
                             BorderBrush="White"
                             BorderThickness="2"
                             CornerRadius="15"
                             
                             Grid.Row="1">
-                            
-                            
-                            <ListBox 
-                                
-                                ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                Name="MyListBox"                                
-                                Foreground="White"
-                                FontSize="18"
-                                ItemContainerStyle="{StaticResource HighlightListBoxItemStyle}"
-                                FontFamily="{StaticResource RobotoMono}"
-                                SelectedItem="{Binding SelectedGenres}"
-                                ItemsSource="{Binding ComboBoxGenreItems}"
-                                PreviewMouseDown="MyListBox_PreviewMouseDown"
-                                SelectionMode="Multiple" SelectionChanged="MyListBox_SelectionChanged">
 
-                            
-                            </ListBox>
-                        </Border>-->
+                            <Grid Width="578">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="36"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid Width="578" Grid.Row="0" >
+                                    <Grid.ColumnDefinitions>
+                                      
+                                        <ColumnDefinition Width="90"/> 
+                                       
+                                        <ColumnDefinition Width="160"/>
+                                        
+                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Header 1-->
+                                    <Border Grid.Column="0"
+                                            BorderBrush="White"
+                                            BorderThickness="0 0 2 2">
+                                        <TextBlock 
+                                           Text="CopyID"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           FontFamily="{StaticResource RobotoMono}"
+                                           FontSize="18"
+           
+                                           Foreground="White"/>
+
+                                    </Border>
+                                    <!--Header 2-->
+                                    <Border Grid.Column="1"
+                                            BorderBrush="White"
+                                            BorderThickness="0 0 2 2">
+                                        <TextBlock 
+                                           Text="Condition"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           FontFamily="{StaticResource RobotoMono}"
+                                           FontSize="18"
+           
+                                           Foreground="White"/>
+                                    </Border>
+
+                                    <!--Header 3-->
+                                    <Border Grid.Column="2"
+                                            BorderBrush="White"
+                                            BorderThickness="0 0 0 2">
+                                        <TextBlock 
+                                           Text="Availability"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           FontFamily="{StaticResource RobotoMono}"
+                                           FontSize="18"
+                                           Foreground="White"/>
+                                    </Border>
+                                    <!--Header 4-->
+                                    <Border Grid.Column="3"
+                                          BorderBrush="White"
+                                          BorderThickness="2 0 2 2">
+                                         <TextBlock 
+                                             Text="Borrower"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             FontFamily="{StaticResource RobotoMono}"
+                                             FontSize="18"
+                                             Foreground="White"/>
+                                    </Border>
+                                    <Border Grid.Column="4"  BorderBrush="White"
+                                             BorderThickness="0 0 0 2">
+                                        
+                                    </Border>
+                                </Grid>
+                                <ListView
+                                     Grid.Row="1"
+                                     x:Name="myListView"
+                                     HorizontalAlignment="Stretch"
+                                     VerticalAlignment="Top"
+                                     Width="578"
+                                     ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Copies}">
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListViewItem>
+                                                <!--PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown"-->
+                                                <Grid 
+                                                      
+                                                    Cursor="Hand" Margin="-14 -8" Width="578" Height="33" >
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="90"/>
+
+                                                        <ColumnDefinition Width="160"/>
+
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.Style>
+                                                        <Style TargetType="{x:Type Grid}">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="False">
+                                                                    <Setter Property="Opacity" Value="1"></Setter>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.7"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+
+                                                    </Grid.Style>
+
+                                                    <Border Background="#ff282b30" CornerRadius="15"  Grid.ColumnSpan="5"/>
+                                                    
+                                                    <Border 
+                                                        Grid.Column="0"
+                                                        BorderBrush="White"
+                                                        BorderThickness="0 0 2 0">
+                                                        <TextBlock VerticalAlignment="Center" 
+                                                           HorizontalAlignment="Center"
+                                                               Name="itemCopyID"
+       
+                                                               Foreground="#99AAB5"
+                                                               Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
+        
+                                                               FontSize="20"/>
+                                                    </Border>
+
+                                                    <Border 
+                                                         Grid.Column="1"
+                                                        BorderBrush="White"
+                                                        BorderThickness="0 0 2 0">
+                                                        <TextBlock 
+                                                           Padding="10 0"
+                                                           VerticalAlignment="Center" 
+                                                           Foreground="#99AAB5"
+                                                           Name="itemCondition"
+                                                           HorizontalAlignment="Center"
+                                                           Text="{Binding Condition}" FontFamily="{StaticResource Inter}" 
+                     
+                                                           FontSize="20">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Foreground" Value="#99AAB5" />
+                                                                    <!-- Default color -->
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Availability}" Value="New">
+                                                                            <Setter Property="Foreground" Value="Green" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Availability}" Value="OK">
+                                                                            <Setter Property="Foreground" Value="Orange" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Availability}" Value="Damaged">
+                                                                            <Setter Property="Foreground" Value="Red" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </Border>
+                                                    <Border 
+                                                             Grid.Column="2"
+                                                            BorderBrush="White"
+                                                            BorderThickness="0 0 2 0">
+                                                        <TextBlock 
+                                                           Padding="10 0"
+                                                           VerticalAlignment="Center" 
+                                                           Foreground="#99AAB5"
+                                                           Name="itemAvailability"
+                                                           HorizontalAlignment="Center"
+                                                           Text="{Binding Availability}" FontFamily="{StaticResource Inter}" 
+                                                            
+                                                           FontSize="20">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Foreground" Value="#99AAB5" />
+                                                                    <!-- Default color -->
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Availability}" Value="Available">
+                                                                            <Setter Property="Foreground" Value="Green" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Availability}" Value="Borrowing">
+                                                                            <Setter Property="Foreground" Value="Orange" />
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Availability}" Value="Overdue">
+                                                                            <Setter Property="Foreground" Value="Red" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </Border>
+                                                    <Border 
+                                                         Grid.Column="3"
+                                                         BorderBrush="White"
+                                                         BorderThickness="0 0 2 0">
+                                                        <TextBlock 
+                                                       Foreground="#99AAB5"
+                                                       Padding="10 0"
+                                                       VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Center"
+                                                       Name="itemborrowerid"
+                                                       Text="{Binding StrBorrowerID}" FontFamily="{StaticResource Inter}" 
+                                                            
+                                                       FontSize="20"/>
+                                                    </Border>
+
+
+                                                    <Border 
+                                                        Grid.Column="4"
+                                                        BorderBrush="White"
+                                                        BorderThickness=" 0 0">
+                                                        <TextBlock 
+                                                           Padding="0 0"
+                                                           VerticalAlignment="Center" 
+                                                           
+                                                           Name="itemRetire"
+                                                           Visibility="{Binding AdminVisibility}"
+                                                           HorizontalAlignment="Center"
+                                                           Text="Retire" FontFamily="{StaticResource Inter}" 
+                                                           TextDecorations="Underline"
+                                                           Foreground="#B44E4E"
+                                                           FontSize="16"
+                                                           
+                                                            
+                                                        ></TextBlock>
+                                                    </Border>
+                                                </Grid>
+
+                                            </ListViewItem>
+
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Width" Value="904"/>
+
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+
+                                </ListView>
+                            </Grid>
+                           
+
+                        </Border>
                        
                     </Grid>
 
