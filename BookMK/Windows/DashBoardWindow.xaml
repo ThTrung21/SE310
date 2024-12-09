@@ -181,7 +181,7 @@
                                                  Margin="0 0 8 0"
                                                  HorizontalAlignment="Right"
                                                  Foreground="White" />
-                            <TextBlock Grid.Column="1" Text="Customers" VerticalAlignment="Center" FontFamily="{StaticResource RobotoMono}" Foreground="White" FontSize="20px" FontWeight="Bold"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="Members" VerticalAlignment="Center" FontFamily="{StaticResource RobotoMono}" Foreground="White" FontSize="20px" FontWeight="Bold"></TextBlock>
                     </Grid>
                 </RadioButton>
         

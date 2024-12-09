@@ -13,14 +13,14 @@ using System.Windows.Controls;
 
 namespace BookMK.ViewModels
 {
-    public class OrderViewModel:ViewModelBase
+    public class BorrowViewModel:ViewModelBase
     {
-        private static readonly ILogger _logger = Log.ForContext(typeof(OrderViewModel));
-        private ObservableCollection<Borrow> _orders;
-        public ObservableCollection<Borrow> Orders
+        private static readonly ILogger _logger = Log.ForContext(typeof(BorrowViewModel));
+        private ObservableCollection<Borrow> _borrows;
+        public ObservableCollection<Borrow> Borrows
         {
-            get { return _orders; }
-            set { _orders = value; OnPropertyChanged(nameof(Orders)); }
+            get { return _borrows; }
+            set { _borrows = value; OnPropertyChanged(nameof(Borrows)); }
         }
 
 
@@ -44,30 +44,30 @@ namespace BookMK.ViewModels
                 OnPropertyChanged(nameof(Date));
             }
         }
-        private Customer _buyer;
-        public Customer Buyer
+        private Customer _borrower;
+        public Customer Borrower
         {
             get
             {
-                return _buyer;
+                return _borrower;
             }
             set
             {
-                _buyer = value;
-                OnPropertyChanged(nameof(Buyer));
+                _borrower = value;
+                OnPropertyChanged(nameof(Borrower));
             }
         }
-        private Staff _cashier;
-        public Staff Cashier
+        private Staff _processstaff;
+        public Staff ProcessStaff
         {
             get
             {
-                return _cashier;
+                return _processstaff;
             }
             set
             {
-                _cashier = value;
-                OnPropertyChanged(nameof(Cashier));
+                _processstaff = value;
+                OnPropertyChanged(nameof(ProcessStaff));
             }
         }
         private string _searchString = "";
@@ -104,9 +104,9 @@ namespace BookMK.ViewModels
 
 
 
-        public static async Task<OrderViewModel> Initialize()
+        public static async Task<BorrowViewModel> Initialize()
         {
-            OrderViewModel viewModel = new OrderViewModel();
+            BorrowViewModel viewModel = new BorrowViewModel();
             await viewModel.InitializeAsync(); _logger.Information("OrderViewModel initialized");
             return viewModel;
         }
@@ -114,15 +114,15 @@ namespace BookMK.ViewModels
         {
             DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
             List<Borrow> allorder = await db.ReadAllAsync();
-            this._orders = new ObservableCollection<Borrow>(allorder);
+            this._borrows = new ObservableCollection<Borrow>(allorder);
 
         }
         public void UpdateOrderList(List<Borrow> i)
         {
-            this.Orders.Clear();
+            this.Borrows.Clear();
             foreach (Borrow c in i)
             {
-                Orders.Add(c);
+                Borrows.Add(c);
             }
         }
 
@@ -162,10 +162,10 @@ namespace BookMK.ViewModels
                         return;
                 }
                 Application.Current.Dispatcher.Invoke(() => {
-                    Orders.Clear();
+                    Borrows.Clear();
                     foreach (Borrow c in results)
                     {
-                        Orders.Add(c);
+                        Borrows.Add(c);
                     }
                 });
             });

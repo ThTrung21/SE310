@@ -38,7 +38,7 @@ namespace BookMK.Views.Pages
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = await OrderViewModel.Initialize();
+            this.DataContext = await BorrowViewModel.Initialize();
         }
 
         private async void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace BookMK.Views.Pages
             f.ShowDialog();
             DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
             List<Borrow> results = await db.ReadAllAsync();
-            (this.DataContext as OrderViewModel).UpdateOrderList(results);
+            (this.DataContext as BorrowViewModel).UpdateOrderList(results);
         }
         private DateTime _lastClickTime;
         private void Grid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
