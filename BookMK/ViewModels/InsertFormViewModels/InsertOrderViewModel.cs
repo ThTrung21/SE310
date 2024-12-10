@@ -27,6 +27,8 @@ namespace BookMK.ViewModels.InsertFormViewModels
                 _selectedBook = value; OnPropertyChanged(nameof(SelectedBook));
             }
         }
+        private BookCopy _selectedCopy;
+        public BookCopy SelectedCopy
         private Staff _cashier;
         public Staff Cashier
         {
@@ -43,20 +45,20 @@ namespace BookMK.ViewModels.InsertFormViewModels
             get { return _id; }
             set { _id = value; OnPropertyChanged(nameof(ID)); }
         }
-        private int _amountinput;
-        public int AmountInput
+        private int _copyidinput;
+        public int CopyIDInput
         {
-            get { return _amountinput; }
-            set { _amountinput = value; OnPropertyChanged(nameof(AmountInput)); }
+            get { return _copyidinput; }
+            set { _copyidinput = value; OnPropertyChanged(nameof(CopyIDInput)); }
         }
         public ObservableCollection<Book> ComboBoxBooks { get; set; } = new ObservableCollection<Book>(Book.GetBooksList());
 
-        private int _copyId;
-        public int CopyID
-        {
-            get { return _copyId; }
-            set { _copyId = value; OnPropertyChanged(nameof(CopyID)); }
-        }
+        //private int _copyId;
+        //public int CopyID
+        //{
+        //    get { return _copyId; }
+        //    set { _copyId = value; OnPropertyChanged(nameof(CopyID)); }
+        //}
         private ObservableCollection<BookCopy> _orderitemlist;
         public ObservableCollection<BookCopy> OrderItemList
         {
@@ -79,17 +81,18 @@ namespace BookMK.ViewModels.InsertFormViewModels
         private void AddItem()
         {
             _logger.Information("AddItem method called.");
-            if (SelectedBook == null || AmountInput == 0)
+            if (SelectedBook == null || CopyIDInput == null)
             {
-                MessageBox.Show("Error! Please check your inputs", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Error! Please check your copy id", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+            SelectedCopy= 
             if (SelectedBook.Stock < 1)
             {
                 MessageBox.Show($"{SelectedBook.Title} is out of stock. Cannot add to order.", "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (AmountInput > SelectedBook.Stock)
+            if (CopyIDInput > SelectedBook.Stock)
             {
                 MessageBox.Show("The amount of item is too much! Cannot add to order.", "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
@@ -104,7 +107,7 @@ namespace BookMK.ViewModels.InsertFormViewModels
                 //SellBook = this.SelectedBook.Title,
                 BookID = this.SelectedBook.ID,
                 //isGifted = false,
-                //Quantity = this.AmountInput,
+                //Quantity = this.CopyIDInput,
 
 
             };

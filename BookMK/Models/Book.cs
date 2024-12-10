@@ -215,6 +215,15 @@ namespace BookMK.Models
             FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Eq(x => x.ID, 1);
             return db.collection.Find(filter).Any();
         }
+        public static BookCopy GetBookCopy(int titleID, int copyID)
+        {
+			
+
+			DataProvider<BookCopy> db = new DataProvider<BookCopy>(BookCopy.Collection);
+            FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Where(x=>x.CopyID==copyID && x.BookID==titleID;
+			return db.collection.Find(filter);
+
+        }
     }
    
 }

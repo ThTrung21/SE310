@@ -144,7 +144,7 @@
                             BorderBrush="White"
                             BorderThickness="0 0 2 2">
                         <TextBlock 
-                               Text="Date"
+                               Text="Borrow Date"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                FontFamily="{StaticResource RobotoMono}"
@@ -183,7 +183,7 @@
                             BorderBrush="White"
                             BorderThickness="0 0 2 2">
                         <TextBlock 
-                               Text="Value ($)"
+                               Text="Status"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                FontFamily="{StaticResource RobotoMono}"

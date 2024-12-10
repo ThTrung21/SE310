@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace BookMK.Models
 {
-    public class Borrow
+	public enum BORROWSTATUS { Borrowing, Overdued, Returned }
+	public class Borrow
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.Int64)]
+        
 
         public int ID { get; set; }
         
@@ -29,7 +31,7 @@ namespace BookMK.Models
 
         public static string Collection = "borrows";
 
-
+        public BORROWSTATUS BorrowStatus { get; set; }
 
         public static int CreateID()
         {
