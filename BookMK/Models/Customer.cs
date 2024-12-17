@@ -92,9 +92,10 @@ namespace BookMK.Models
         public static List<Customer> GetCustomerList()
         {
             DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
+            
             List<Customer> c = db.ReadAll();
-
-            return c;
+			return c.Where(x => x.ID != 0).ToList();
+			
         }
 
         public static Author GetAuthorByName(string Name)

@@ -17,14 +17,14 @@ namespace BookMK.Commands.InsertCommand
     //{
     //    private readonly InsertOrderViewModel vm;
     //    private readonly Staff Cashier;
-    //    bool operationSucceeded=false;
+    //    bool operationSucceeded = false;
     //    public InsertOrderCommand(InsertOrderViewModel vm, Staff c)
     //    {
     //        this.vm = vm;
     //        this.Cashier = c;
     //    }
 
-       
+
 
     //    public override async Task ExecuteAsync(object parameter)
     //    {
@@ -33,7 +33,7 @@ namespace BookMK.Commands.InsertCommand
 
     //        if (vm.SelectedCustomer == null)
     //        {
-    //            MessageBox.Show("Please choose a buyer first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    //            MessageBox.Show("Please choose a member first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
     //            return;
     //        }
 
@@ -49,7 +49,7 @@ namespace BookMK.Commands.InsertCommand
     //            StaffID = Cashier.ID,
     //            StaffName = Cashier.FullName,
     //            Time = DateTime.Now,
-               
+
     //        };
     //        try
     //        {
@@ -83,8 +83,8 @@ namespace BookMK.Commands.InsertCommand
     //            {
     //                if (vm.SelectedCustomer.ID != 0)
     //                {
-                       
-                      
+
+
 
     //                    //FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, vm.SelectedCustomer.ID);
     //                    //UpdateDefinition<Customer> update = Builders<Customer>.Update
@@ -106,17 +106,17 @@ namespace BookMK.Commands.InsertCommand
     //            if (operationSucceeded)
     //            {
     //                MessageBox.Show("A new purchase has been recorded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-    //            Window f = parameter as Window;
-    //            f?.Close();
+    //                Window f = parameter as Window;
+    //                f?.Close();
 
-    //            // Log success
-    //            Log.Information("A new purchase has been recorded: OrderID - {OrderID}, Time - {OrderTime}", o.ID, DateTime.Now);
+    //                // Log success
+    //                Log.Information("A new purchase has been recorded: OrderID - {OrderID}, Time - {OrderTime}", o.ID, DateTime.Now);
     //            }
     //            else
-    //                {
-    //                    // Notify user after all retries failed
-    //                    MessageBox.Show("Failed to create the order after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    //                }
+    //            {
+    //                // Notify user after all retries failed
+    //                MessageBox.Show("Failed to create the order after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    //            }
     //        }
     //        catch (Exception ex)
     //        {
@@ -127,7 +127,7 @@ namespace BookMK.Commands.InsertCommand
     //            // Log error
     //            Log.Error(ex, "Error occurred while inserting a new order.");
 
-                
+
     //        }
     //    }
     //}

@@ -97,7 +97,7 @@ namespace BookMK.Views.InsertForm
             InsertOrderViewModel vm= this.DataContext as InsertOrderViewModel;
             if(vm.OrderItemList.Count()==0)
             {
-                MessageBox.Show("Error! There's nothing in your order", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Error! There's nothing in your List", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             this.AddBook.Visibility= Visibility.Collapsed;

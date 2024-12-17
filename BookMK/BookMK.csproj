@@ -295,6 +295,7 @@
     <Compile Include="Commands\UpdateCommand\UpdateStaffCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateStockCommand.cs" />
     <Compile Include="Converters\AbsoluteFileNameToBitmapImage.cs" />
+    <Compile Include="Converters\BookIdToTitle.cs" />
     <Compile Include="Converters\PathToBookCover.cs" />
     <Compile Include="Converters\StringNullOrEmptyConverter.cs" />
     <Compile Include="Models\Account.cs" />

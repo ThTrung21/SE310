@@ -55,4 +55,8 @@ namespace BookMK.Models
             return expectedValue;
         }
     }
+    public class BorrowItem
+    {
+
+    }
 }

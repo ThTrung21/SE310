@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BookMK.Views.InsertForm"
+        xmlns:converter="clr-namespace:BookMK.Converters"
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -12,6 +13,9 @@
         Loaded="Window_Loaded_1"
         Background="#36393E"
         Title="InsertOrderForm" Height="800" Width="614">
+    <Window.Resources>
+        <converter:BookIdToTitle x:Key="BookIdToTitle"/>
+    </Window.Resources>
     <Border
         CornerRadius="15"
         Padding="8 0 8 0">
@@ -111,7 +115,7 @@
 
                     </Grid>
                     
-                    <!--amount-->
+                    <!--copy id-->
                     <Grid 
                                 Grid.Column="1">
                         <Grid.RowDefinitions>
@@ -255,7 +259,7 @@
                                                Name="itemID"
                                                
                                                Foreground="#99AAB5"
-                                               Text="{Binding SellBook}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding BookID, Converter={StaticResource BookIdToTitle} }" FontFamily="{StaticResource Inter}" 
                                                 
                                                FontSize="20"/>
 
@@ -268,7 +272,7 @@
                                                Foreground="#99AAB5"
                                                Name="itemName"
                                                HorizontalAlignment="Center"
-                                               Text="{Binding Quantity}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
 
@@ -280,7 +284,7 @@
                                                Foreground="#99AAB5"
                                                Name="itemPhone"
                                                HorizontalAlignment="Center"
-                                               Text="{Binding ItemPrice}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding Condition}" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
 
@@ -331,13 +335,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90"/>
                     <RowDefinition Height="90"/>
-                    
                     <RowDefinition/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                
-                    
 
+                <!--<Grid Grid.Row>
+                    
+                </Grid>-->
+    
 
                 <Grid Grid.Row="0">
                     
@@ -345,13 +350,21 @@
                             <RowDefinition Height="20"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <!--<TextBlock Text="Amount Discount:"
+                        <TextBlock Text="Return Date:"
                            Foreground="White"
                            VerticalAlignment="Top"
                            FontSize="20"
                            Grid.Row="0"
                            FontFamily="{StaticResource Inter}"/>
-                        <ComboBox 
+                    <DatePicker
+                         Grid.Row="1"
+                          SelectedDate="{Binding ReturnDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Width="140"
+                          materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="3"
+                          materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="3">
+    
+                    </DatePicker>
+                    <!--<ComboBox 
                                 Grid.Row="1"
                                 x:Name="comboBoxamountoff" 
                                 HorizontalAlignment="Left" 
@@ -540,7 +553,7 @@
                                                
                                                
                                                Foreground="#99AAB5"
-                                               Text="{Binding SellBook}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding BookID, Converter={StaticResource BookIdToTitle}}" FontFamily="{StaticResource Inter}" 
                                                 
                                                FontSize="20"/>
 
@@ -553,7 +566,7 @@
                                                Foreground="#99AAB5"
                                                
                                                HorizontalAlignment="Center"
-                                               Text="{Binding Quantity}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
 
@@ -565,7 +578,7 @@
                                                Foreground="#99AAB5"
                                                
                                                HorizontalAlignment="Center"
-                                               Text="{Binding ItemPrice}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding Condition}" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
 
@@ -588,7 +601,7 @@
                     </Grid>
                 </Border>
                 <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <TextBlock Text="Total ($):"
+                    <!--<TextBlock Text="Total ($):"
                            Foreground="White"
                            VerticalAlignment="Center"
                            FontSize="32"
@@ -608,7 +621,7 @@
                     Padding="8 0"
                     VerticalAlignment="Center"  
                    Background="Transparent"
-                   />
+                   />-->
 
                 </StackPanel>
 
@@ -641,7 +654,7 @@
                     
                     
                     HorizontalAlignment="Center" Width="120" Height="40"  
-                    Content="Checkout"
+                    Content="Confirm"
                     Click="CheckoutBtn_Click"
                     FontFamily="{StaticResource Inter}"
                     FontSize="18"

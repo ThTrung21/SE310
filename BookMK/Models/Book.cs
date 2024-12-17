@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace BookMK.Models
         New,
         OK,
         Damaged,
+       
     }
     public enum STATUS
     {
@@ -110,6 +112,15 @@ namespace BookMK.Models
 
             return AllBooks;
         }
+        public static string GetTitle(int id)
+        {
+			DataProvider<Book> db = new DataProvider<Book>(Book.Collection);
+
+			FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, id);
+            Book a =  db.ReadFiltered(filter).FirstOrDefault();
+            return a.Title;
+        }
+
         public static Book GetBook(int id)
         {
             if(id==0)
@@ -220,10 +231,17 @@ namespace BookMK.Models
 			
 
 			DataProvider<BookCopy> db = new DataProvider<BookCopy>(BookCopy.Collection);
-            FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Where(x=>x.CopyID==copyID && x.BookID==titleID;
-			return db.collection.Find(filter);
+            FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Where(x=>x.CopyID==copyID && x.BookID==titleID);
+			return db.ReadFiltered(filter).FirstOrDefault();
 
         }
+        public static List<BookCopy> GetCopies(int titleID)
+        {
+			DataProvider<BookCopy> db = new DataProvider<BookCopy>(BookCopy.Collection);
+			FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Where(x=>x.BookID == titleID);
+            return db.ReadFiltered(filter).ToList();
+		}
+        
     }
    
 }
