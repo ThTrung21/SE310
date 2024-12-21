@@ -21,6 +21,7 @@ namespace BookMK.Models
     }
     public enum STATUS
     {
+        
         Available,
         Borrowing,
         Overdue,

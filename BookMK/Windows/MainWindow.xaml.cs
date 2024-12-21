@@ -77,7 +77,7 @@ namespace BookMK
             // Create a customer instance for unregistered customer purchase
             var customerProvider = new DataProvider<Customer>("customers");
             // Check if any accounts exist in the database with the username "admin"
-            bool customerExists = Customer.IsExisted("Walk-in Customers");
+            bool customerExists = Customer.IsExisted("test");
             if (!customerExists)
             {
 
@@ -85,11 +85,11 @@ namespace BookMK
                 var Walk_in = new Customer
                 {
                     ID = 0,
-                    Phone = "",
-                    FullName = "Walk-in Customers",
-                    Email = "",
-                    Address = "",
-                    BorrowedIDList = null,
+                    Phone = "123",
+                    FullName = "test",
+                    Email = "test@email.com",
+                    Address = "aaa",
+                    BorrowedIDList = new List<int>{-1 },
 
                 };
 

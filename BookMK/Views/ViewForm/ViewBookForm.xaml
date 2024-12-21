@@ -306,7 +306,7 @@
                                       
                                         <ColumnDefinition Width="90"/> 
                                        
-                                        <ColumnDefinition Width="160"/>
+                                        <ColumnDefinition Width="140"/>
                                         
                                         <ColumnDefinition Width="160"/>
                                         <ColumnDefinition Width="100"/>
@@ -378,10 +378,10 @@
                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding Copies}">
 
-                                    <ListView.ItemTemplate>
+                                    <!--<ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ListViewItem>
-                                                <!--PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown"-->
+                                                --><!--PreviewMouseLeftButtonDown="Grid_PreviewMouseLeftButtonDown"--><!--
                                                 <Grid 
                                                       
                                                     Cursor="Hand" Margin="-14 -8" Width="578" Height="33" >
@@ -441,7 +441,7 @@
                                                             <TextBlock.Style>
                                                                 <Style TargetType="TextBlock">
                                                                     <Setter Property="Foreground" Value="#99AAB5" />
-                                                                    <!-- Default color -->
+                                                                    --><!-- Default color --><!--
                                                                     <Style.Triggers>
                                                                         <DataTrigger Binding="{Binding Availability}" Value="New">
                                                                             <Setter Property="Foreground" Value="Green" />
@@ -473,7 +473,7 @@
                                                             <TextBlock.Style>
                                                                 <Style TargetType="TextBlock">
                                                                     <Setter Property="Foreground" Value="#99AAB5" />
-                                                                    <!-- Default color -->
+                                                                    --><!-- Default color --><!--
                                                                     <Style.Triggers>
                                                                         <DataTrigger Binding="{Binding Availability}" Value="Available">
                                                                             <Setter Property="Foreground" Value="Green" />
@@ -529,7 +529,110 @@
                                             </ListViewItem>
 
                                         </DataTemplate>
+                                    </ListView.ItemTemplate>-->
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListViewItem>
+                                                <Grid Cursor="Hand" Margin="-14 -8" Width="578" Height="33">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="90"/>
+                                                        <ColumnDefinition Width="140"/>
+                                                        <ColumnDefinition Width="160"/>
+                                                        <ColumnDefinition Width="100"/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.Style>
+                                                        <Style TargetType="{x:Type Grid}">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="False">
+                                                                    <Setter Property="Opacity" Value="1"></Setter>
+                                                                </Trigger>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.7"></Setter>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+
+                                                    <Border Background="#ff282b30" CornerRadius="15" Grid.ColumnSpan="5"/>
+
+                                                    <Border Grid.Column="0" BorderBrush="White" BorderThickness="0 0 2 0">
+                                                        <TextBlock VerticalAlignment="Center" 
+                                                           HorizontalAlignment="Center"
+                                                           Foreground="#99AAB5"
+                                                           Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
+                                                           FontSize="20"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="1" BorderBrush="White" BorderThickness="0 0 2 0">
+                                                        <ComboBox VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center"
+                                                              Width="100"
+                                                              SelectedItem="{Binding Condition, Mode=TwoWay}"
+                                                              FontFamily="{StaticResource Inter}" 
+                                                              FontSize="18"
+                                                              Background="#36393E"
+                                                              Foreground="#99AAB5"
+                                                              ItemsSource="{Binding AvailableConditions}">
+                                                            <ComboBox.Style>
+                                                                <Style TargetType="ComboBox">
+                                                                    <Setter Property="Foreground" Value="#99AAB5"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Condition}" Value="New">
+                                                                            <Setter Property="Foreground" Value="Green"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Condition}" Value="OK">
+                                                                            <Setter Property="Foreground" Value="Orange"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding Condition}" Value="Damaged">
+                                                                            <Setter Property="Foreground" Value="Red"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </ComboBox.Style>
+                                                        </ComboBox>
+                                                    </Border>
+
+                                                    <Border Grid.Column="2" BorderBrush="White" BorderThickness="0 0 2 0">
+                                                        <TextBlock Padding="10 0"
+                                                           VerticalAlignment="Center" 
+                                                           Foreground="#99AAB5"
+                                                           HorizontalAlignment="Center"
+                                                           Text="{Binding Availability}" FontFamily="{StaticResource Inter}" 
+                                                           FontSize="20"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="3" BorderBrush="White" BorderThickness="0 0 2 0">
+                                                        <TextBlock Foreground="#99AAB5"
+                                                       Padding="10 0"
+                                                       VerticalAlignment="Center" 
+                                                       HorizontalAlignment="Center"
+                                                       Text="{Binding StrBorrowerID}" FontFamily="{StaticResource Inter}" 
+                                                       FontSize="20"/>
+                                                    </Border>
+
+                                                    <Border Grid.Column="4" BorderBrush="White" BorderThickness="0 0">
+                                                        <Button Content="Retire"
+                            Command="{Binding RetireCommand}"
+                            CommandParameter="{Binding}"
+                            Foreground="#B44E4E"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            FontFamily="{StaticResource Inter}" 
+                            FontSize="16"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Visibility="{Binding AdminVisibility}"/>
+                                                    </Border>
+                                                </Grid>
+                                            </ListViewItem>
+                                        </DataTemplate>
                                     </ListView.ItemTemplate>
+
+
+
+
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="Width" Value="904"/>

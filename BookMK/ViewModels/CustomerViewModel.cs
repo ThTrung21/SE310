@@ -133,6 +133,7 @@ namespace BookMK.ViewModels
         {
             DataProvider<Customer> db = new DataProvider<Customer>(Customer.Collection);
             List<Customer> AllCustomers = await db.ReadAllAsync();
+            AllCustomers = AllCustomers.OrderBy(c => c.ID).ToList();
             this._customers = new ObservableCollection<Customer>(AllCustomers);
            
         }

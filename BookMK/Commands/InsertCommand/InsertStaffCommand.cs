@@ -87,6 +87,7 @@ namespace BookMK.Commands.InsertCommand
                 {
                     DataProvider<Staff> db = new DataProvider<Staff>(Staff.Collection);
                 await db.InsertOneAsync(c);
+                    operationSucceeded = true;
                 });
 
                 if (operationSucceeded)

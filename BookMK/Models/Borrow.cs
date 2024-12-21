@@ -27,7 +27,7 @@ namespace BookMK.Models
         public DateTime BorrowDate { get; set; }
         public DateTime ReturnDate { get; set; }
 
-        public List<BookCopy> BorrowedCopies { get; set; }
+        public ObservableCollection<BookCopy> BorrowedCopies { get; set; }
 
         public static string Collection = "borrows";
 

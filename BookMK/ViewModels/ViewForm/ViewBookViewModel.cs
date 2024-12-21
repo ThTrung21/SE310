@@ -93,6 +93,12 @@ namespace BookMK.ViewModels.ViewForm
             get { return _copies; }
             set { _copies = value; OnPropertyChanged(nameof(Copies)); }
         }
+        private BookCopy _currentCopy= new BookCopy();
+        public BookCopy CurrentCopy
+        {
+            get => _currentCopy;
+            set { _currentCopy = value; OnPropertyChanged(nameof(CurrentCopy)); }
+        }
         private int _copyID;
         public int CopyID
         {
@@ -150,6 +156,7 @@ namespace BookMK.ViewModels.ViewForm
         public ICommand UpdateBook { get;set; }
         public ICommand SaveImageDialog { get; set; }
         public ICommand DeleteBook { get; set; }
+        public ICommand RetireCopy { get; set; }
 
         public ViewBookViewModel() { _logger.Information("ViewBookViewModel constructor called."); }
         public ViewBookViewModel(Book b, string role) 
@@ -158,7 +165,7 @@ namespace BookMK.ViewModels.ViewForm
             this.CurrentBook = b;
             DataProvider<BookCopy> db= new DataProvider<BookCopy>(BookCopy.Collection);
 
-            FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Where(a => a.BookID == b.ID);
+            FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Where(a => a.BookID == b.ID && a.IsRetire==false );
             List<BookCopy> allcopies = db.ReadFiltered(filter);
 
             this._copies=new ObservableCollection<BookCopy>(allcopies);
@@ -172,21 +179,21 @@ namespace BookMK.ViewModels.ViewForm
 
             this.SaveImageDialog = new SaveImageDialogCommand(Filename, this);
             this.UpdateBook = new UpdateBookCommand(this, Filename);
-            this.DeleteBook = new DeleteBookCommand(this, Filename);
-
+            //this.DeleteBook = new DeleteBookCommand(this, Filename);
+            this.RetireCopy = new RetireBookCopyCommand(this);
         }
 
 
-        private void RetireBookCopy(BookCopy copy)
-        {
-            if (copy != null)
-            {
-                copy.IsRetire = true;
-                OnPropertyChanged(nameof(Copies)); // Notify the ListView to update
+        //private void RetireBookCopy(BookCopy copy)
+        //{
+        //    if (copy != null)
+        //    {
+        //        copy.IsRetire = true;
+        //        OnPropertyChanged(nameof(Copies)); // Notify the ListView to update
 
-                // Optionally flag as updated to be saved later
-                // Add logic here to mark for later update, if needed
-            }
-        }
+        //        // Optionally flag as updated to be saved later
+        //        // Add logic here to mark for later update, if needed
+        //    }
+        //}
     }
 }

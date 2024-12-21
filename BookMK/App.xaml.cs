@@ -52,7 +52,7 @@ namespace BookMK
             base.OnStartup(e);
             FirebaseApp.Create(new AppOptions()
             {
-                Credential = GoogleCredential.FromFile("D:\\UIT\\firebase\\bookmk-3de98-firebase-adminsdk-n4dpq-ec46cabbaf.json")
+                Credential = GoogleCredential.FromFile("C:\\Users\\TRUNG\\Desktop\\bookmk-3de98-firebase-adminsdk-n4dpq-7c683c89b3.json")
             });
         }
         protected override void OnExit(ExitEventArgs e)

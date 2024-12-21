@@ -62,11 +62,11 @@ namespace BookMK.Commands.InsertCommand
                         Book target = Book.GetBook(currentid);
                        
 
-                        if (target.Stock + amount > 100)
-                        {
-                            MessageBox.Show($"{target.Title} still has too much in stock. Cannot add to import.", "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return;
-                        }
+                        //if (target.Stock + amount > 100)
+                        //{
+                        //    MessageBox.Show($"{target.Title} still has too much in stock. Cannot add to import.", "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        //    return;
+                        //}
                         
 
 

@@ -291,6 +291,7 @@
     <Compile Include="Commands\UpdateCommand\UpdateAccountCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateAuthorCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateBookCommand.cs" />
+    <Compile Include="Commands\UpdateCommand\RetireBookCopyCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateCustomerCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateStaffCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateStockCommand.cs" />

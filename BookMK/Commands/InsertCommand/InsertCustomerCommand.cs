@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using Polly;
+using System.Collections.Generic;
 namespace BookMK.Commands.InsertCommand
 {
     public class InsertCustomerCommand : AsyncCommandBase
@@ -35,7 +36,7 @@ namespace BookMK.Commands.InsertCommand
             String _Email = vm.Email;
             String _Address = vm.Address;
 
-            
+
             Customer newCustomer = new Customer()
             {
                 ID = (int)_ID,
@@ -43,8 +44,8 @@ namespace BookMK.Commands.InsertCommand
                 FullName = _FullName,
                 Email = _Email,
                 Address = _Address,
+                BorrowedIDList = new List<int> { -1}
             };
-
             try
             {
                 if (string.IsNullOrWhiteSpace(_FullName) || string.IsNullOrWhiteSpace(_Email) || string.IsNullOrWhiteSpace(_Phone) || string.IsNullOrWhiteSpace(_Address))

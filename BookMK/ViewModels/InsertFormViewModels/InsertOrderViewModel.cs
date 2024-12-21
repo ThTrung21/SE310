@@ -147,7 +147,7 @@ namespace BookMK.ViewModels.InsertFormViewModels
 
 
 
-        private DateTime _returndate;
+        private DateTime _returndate= DateTime.Now;
         public DateTime ReturnDate
         {
             get { return _returndate; }
@@ -208,7 +208,7 @@ namespace BookMK.ViewModels.InsertFormViewModels
             
             
             this.OrderItemList = new ObservableCollection<BookCopy>();
-            //this.InsertOrder = new InsertOrderCommand(this, Cashier);
+            this.InsertOrder = new InsertOrderCommand(this, Cashier);
         }
         public ICommand InsertOrder { get;set; }
         public static async Task<InsertOrderViewModel> Initialize()

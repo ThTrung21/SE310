@@ -199,7 +199,7 @@
                      VerticalAlignment="Top"
                      Width="904"
                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Orders}">
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" ItemsSource="{Binding Borrows}">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -255,7 +255,7 @@
                                                Foreground="#99AAB5"
                                                Name="itemdate"
                                                HorizontalAlignment="Center"
-                                               Text="{Binding Time, StringFormat =dd/MM/yyyy }" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding BorrowDate, StringFormat =dd/MM/yyyy }" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
                                     </Border>
@@ -294,7 +294,7 @@
                                                VerticalAlignment="Center" 
                                                HorizontalAlignment="Center"
                                                Name="itemvalue"
-                                               Text="{Binding Total}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding BorrowStatus}" FontFamily="{StaticResource Inter}" 
                                                FontSize="20"/>
 
                                 </Grid>

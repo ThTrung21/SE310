@@ -13,122 +13,123 @@ using System.Windows;
 
 namespace BookMK.Commands.InsertCommand
 {
-    //public class InsertOrderCommand : AsyncCommandBase
-    //{
-    //    private readonly InsertOrderViewModel vm;
-    //    private readonly Staff Cashier;
-    //    bool operationSucceeded = false;
-    //    public InsertOrderCommand(InsertOrderViewModel vm, Staff c)
-    //    {
-    //        this.vm = vm;
-    //        this.Cashier = c;
-    //    }
+    public class InsertOrderCommand : AsyncCommandBase
+    {
+        private readonly InsertOrderViewModel vm;
+        private readonly Staff Cashier;
+        bool operationSucceeded = false;
+        public InsertOrderCommand(InsertOrderViewModel vm, Staff c)
+        {
+            this.vm = vm;
+            this.Cashier = c;
+        }
 
 
 
-    //    public override async Task ExecuteAsync(object parameter)
-    //    {
-    //        int _ID = vm.ID;
-    //        ObservableCollection<BookCopy> list = vm.OrderItemList;
+        public override async Task ExecuteAsync(object parameter)
+        {
+            int _ID = vm.ID;
+            ObservableCollection<BookCopy> list = vm.OrderItemList;
 
-    //        if (vm.SelectedCustomer == null)
-    //        {
-    //            MessageBox.Show("Please choose a member first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    //            return;
-    //        }
+            if (vm.SelectedCustomer == null)
+            {
+                MessageBox.Show("Please choose a member first", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
-    //        Borrow o = new Borrow()
-    //        {
-    //            ID = Borrow.CreateID(),
-    //            Items = list,
-    //            // Customer info
-    //            CustomerID = vm.SelectedCustomer.ID,
-    //            CustomerName = vm.SelectedCustomer.FullName,
-    //            CustomerPhone = vm.SelectedCustomer.Phone,
-    //            // Cashier info
-    //            StaffID = Cashier.ID,
-    //            StaffName = Cashier.FullName,
-    //            Time = DateTime.Now,
+            Borrow o = new Borrow()
+            {
+                ID = Borrow.CreateID(),
+                BorrowedCopies = list,
+                BorrowStatus = BORROWSTATUS.Borrowing,
+                // Customer info
+                CustomerID = vm.SelectedCustomer.ID,
+                CustomerName = vm.SelectedCustomer.FullName,
+                CustomerPhone = vm.SelectedCustomer.Phone,
 
-    //        };
-    //        try
-    //        {
-    //            // Add to cache before attempting to insert
-    //            SimpleCache.AddOrUpdate($"order_{_ID}", o);
-    //            // Define retry policy with exponential backoff
-    //            var retryPolicy = Policy
-    //                .Handle<Exception>()
-    //                .WaitAndRetryAsync(3, attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)),
-    //                    (exception, timeSpan, retryCount, context) =>
-    //                    {
-    //                        Log.Warning("Retry {RetryCount} of inserting author failed. Waiting {TimeSpan} before next retry. Exception: {Exception}", retryCount, timeSpan, exception);
-    //                    });
+                // Cashier info
+                StaffID = Cashier.ID,
+                StaffName = Cashier.FullName,
 
-    //            await retryPolicy.ExecuteAsync(async () =>
-    //            {
-    //                DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
-    //                await db.InsertOneAsync(o); operationSucceeded = true;
-    //            });
+                BorrowDate = DateTime.Now,
+                ReturnDate = vm.ReturnDate,
 
-    //            // Update books stock
-    //            foreach (var item in vm.OrderItemList)
-    //            {
-    //                FilterDefinition<Book> filter = Builders<Book>.Filter.Eq(x => x.ID, item.BookID);
-    //                UpdateDefinition<Book> update = Builders<Book>.Update.Inc(x => x.Stock, -item.Quantity);
-    //                DataProvider<Book> dbb = new DataProvider<Book>(Book.Collection);
-    //                dbb.Update(filter, update);
-    //            }
+            };
+            try
+            {
+                // Add to cache before attempting to insert
+                SimpleCache.AddOrUpdate($"order_{_ID}", o);
+                // Define retry policy with exponential backoff
+                var retryPolicy = Policy
+                    .Handle<Exception>()
+                    .WaitAndRetryAsync(3, attempt => TimeSpan.FromSeconds(Math.Pow(2, attempt)),
+                        (exception, timeSpan, retryCount, context) =>
+                        {
+                            Log.Warning("Retry {RetryCount} of inserting author failed. Waiting {TimeSpan} before next retry. Exception: {Exception}", retryCount, timeSpan, exception);
+                        });
 
-    //            // Update customer points and loyal discount status (if any)
-    //            {
-    //                if (vm.SelectedCustomer.ID != 0)
-    //                {
+                await retryPolicy.ExecuteAsync(async () =>
+                {
+                    DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+                    await db.InsertOneAsync(o); operationSucceeded = true;
+                });
 
+                // Update book's copy info
+                foreach (var item in vm.OrderItemList)
+                {
 
+                    FilterDefinition<BookCopy> filter = Builders<BookCopy>.Filter.Eq(x => x.ID, item.ID);
+                    UpdateDefinition<BookCopy> update = Builders<BookCopy>.Update
+                        .Set(x => x.BorrowerID, o.CustomerID)
+                        .Set(x => x.Availability, STATUS.Borrowing);
+                    DataProvider<BookCopy> dbb = new DataProvider<BookCopy>(BookCopy.Collection);
+                    dbb.Update(filter, update);
+                }
 
-    //                    //FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, vm.SelectedCustomer.ID);
-    //                    //UpdateDefinition<Customer> update = Builders<Customer>.Update
-    //                    //    .Set(x => x.PurchasePoint, vm.SelectedCustomer.PurchasePoint)
-    //                    //    .Set(x => x.IsLoyalDiscountReady, vm.SelectedCustomer.IsLoyalDiscountReady);
-
-    //                    //DataProvider<Customer> dbc = new DataProvider<Customer>(Customer.Collection);
-    //                    //dbc.Update(filter, update);
-    //                }
-    //                else
-    //                {
-    //                    FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, 0);
-    //                    UpdateDefinition<Customer> update = Builders<Customer>.Update
-    //                        .Set(x => x.PurchasePoint, vm.SelectedCustomer.PurchasePoint);
-    //                    DataProvider<Customer> dbc = new DataProvider<Customer>(Customer.Collection);
-    //                    dbc.Update(filter, update);
-    //                }
-    //            }
-    //            if (operationSucceeded)
-    //            {
-    //                MessageBox.Show("A new purchase has been recorded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-    //                Window f = parameter as Window;
-    //                f?.Close();
-
-    //                // Log success
-    //                Log.Information("A new purchase has been recorded: OrderID - {OrderID}, Time - {OrderTime}", o.ID, DateTime.Now);
-    //            }
-    //            else
-    //            {
-    //                // Notify user after all retries failed
-    //                MessageBox.Show("Failed to create the order after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    //            }
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            var cachedAuthor = SimpleCache.Get<Borrow>($"borrow_{_ID}");
-
-    //            MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
-    //            // Log error
-    //            Log.Error(ex, "Error occurred while inserting a new order.");
+                // Update customer points and loyal discount status (if any)
+                {
+                    
+                        FilterDefinition<Customer> filter = Builders<Customer>.Filter.Eq(x => x.ID, o.CustomerID);
+                        UpdateDefinition<Customer> update = Builders<Customer>.Update
+                            .AddToSet(x => x.BorrowedIDList, _ID);
+                        DataProvider<Customer> dbc = new DataProvider<Customer>(Customer.Collection);
+                        dbc.Update(filter, update);
+                    operationSucceeded = true;
+                }
+                if (operationSucceeded)
+                {
+                    MessageBox.Show("A new import has been recorded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Window f = parameter as Window;
+                    f?.Close();
 
 
-    //        }
-    //    }
-    //}
+                    // Remove from cache after successful insert
+                    SimpleCache.Remove($"import_ {_ID}");
+
+                    // Log success
+                    Log.Information("A new borrow has been recorded: ImportID - {ImportID}, Time - {ImportTime}", _ID, DateTime.Now);
+                }
+                else
+                {
+                    // Notify user after all retries failed
+                    MessageBox.Show("Failed to create the import after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Window f = parameter as Window;
+                    f?.Close();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                var cachedAuthor = SimpleCache.Get<Borrow>($"borrow_{_ID}");
+    //               
+
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                // Log error
+                Log.Error(ex, "Error occurred while inserting a new order.");
+
+
+            }
+        }
+    }
 }

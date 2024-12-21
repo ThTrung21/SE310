@@ -31,17 +31,17 @@ namespace BookMK.ViewModels
             get { return _selectedIndex; }
             set { _selectedIndex = value;/* Search()*/; OnPropertyChanged(nameof(SelectedIndex)); }
         }
-        private DateTime _date;
-        public DateTime Date
+        private DateTime _borrowdate;
+        public DateTime BorrowDate
         {
             get
             {
-                return _date;
+                return _borrowdate;
             }
             set
             {
-                _date = value;
-                OnPropertyChanged(nameof(Date));
+                _borrowdate = value;
+                OnPropertyChanged(nameof(BorrowDate));
             }
         }
         private Customer _borrower;

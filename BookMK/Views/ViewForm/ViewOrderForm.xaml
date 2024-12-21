@@ -164,7 +164,7 @@
                             BorderBrush="White"
                             BorderThickness="0 0 2 2">
                             <TextBlock 
-                               Text="Price"
+                               Text="Condition"
                                Width="136"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
@@ -180,7 +180,7 @@
                      VerticalAlignment="Top"
                      
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding CurrentOrder.Items}">
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding CurrentOrder.BorowedCopies}">
 
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -219,8 +219,7 @@
                                                
                                                
                                                Foreground="#99AAB5"
-                                               Text="{Binding SellBook}" FontFamily="{StaticResource Inter}" 
-                                                
+                                                Text="{Binding BookID, Converter={StaticResource BookIdToTitle}}" FontFamily="{StaticResource Inter}" 
                                                FontSize="20"/>
 
 
@@ -232,7 +231,7 @@
                                                Foreground="#99AAB5"
                                                
                                                HorizontalAlignment="Center"
-                                               Text="{Binding Quantity}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
 
@@ -244,7 +243,7 @@
                                                Foreground="#99AAB5"
                                                
                                                HorizontalAlignment="Center"
-                                               Text="{Binding ItemPrice}" FontFamily="{StaticResource Inter}" 
+                                               Text="{Binding Condition}" FontFamily="{StaticResource Inter}" 
                                      
                                                FontSize="20"/>
 

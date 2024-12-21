@@ -39,6 +39,7 @@ namespace BookMK.Views.InsertForm
             this.backbtn.Visibility = Visibility.Collapsed;
             this.CheckoutBtn.Visibility = Visibility.Collapsed;
             this.DataContext = new InsertOrderViewModel(s);
+            
         }
        
         private bool IsNumeric(string input)
@@ -123,7 +124,7 @@ namespace BookMK.Views.InsertForm
             InsertOrderViewModel vm = this.DataContext as InsertOrderViewModel;
             if(vm.InsertOrder!=null)
             {
-                vm.InsertOrder .Execute(this);
+                vm.InsertOrder.Execute(this);
             }
         }
     }
