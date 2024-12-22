@@ -5,19 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookMK.Views.ViewForm"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:converter="clr-namespace:BookMK.Converters"
         Background="#36393E"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
         WindowStyle="None"
-        Title="ViewOrderForm" Height="800" Width="614">
+        Title="ViewOrderForm" Height="700" Width="614">
+    <Window.Resources>
+        <converter:BookIdToTitle x:Key="BookIdToTitle"/>
+    </Window.Resources>
     <Border
         CornerRadius="15"
         Padding="8 0 8 0">
         <Grid Margin="8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="160"/>
+                <RowDefinition Height="240"/>
                 <RowDefinition/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
@@ -53,6 +56,7 @@
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -114,7 +118,34 @@
                    
 
                 </Grid>
+                <Grid Grid.Row="2">
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Return Date:"
+                       Foreground="White"
+                       VerticalAlignment="Top"
+                       FontSize="20"
+                       Grid.Row="0"
+                       FontFamily="{StaticResource Inter}"/>    
+                    <TextBox
+                    
+                    Text="{Binding CurrentOrder.ReturnDate, StringFormat='{}{0:MM/dd/yyyy}',UpdateSourceTrigger=PropertyChanged}"
+                    Grid.Row="1" 
+                    FontSize="18"
+                    Margin="0 10 10 0"
+                    Height="44"  
+                    Width="400"
+                    Cursor="No"
+                    IsReadOnly="True"
+                    HorizontalAlignment="Left"
+                    TextAlignment="Left"
+                    VerticalAlignment="top"  
+                    MaxLength="50"
+                    Style="{StaticResource FilledTextBox}"/>
+                </Grid>
             </Grid>
 
             <Border Grid.Row="2"
@@ -138,7 +169,7 @@
                             BorderThickness="0 0 2 2">
                             <TextBlock 
                                
-                               Text="Item Name"
+                               Text="Title"
                                 Width="330"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
@@ -151,7 +182,7 @@
                             BorderBrush="White"
                             BorderThickness="0 0 2 2">
                             <TextBlock 
-                               Text="Amount"
+                               Text="CopyID"
                                 Width="90"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
@@ -180,7 +211,7 @@
                      VerticalAlignment="Top"
                      
                       ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding CurrentOrder.BorowedCopies}">
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemsSource="{Binding CurrentOrder.BorrowedCopies}">
 
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -266,7 +297,7 @@
                 </Grid>
             </Border>
 
-            <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
+            <!--<StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBlock Text="Total:"
                            Foreground="White"
                            VerticalAlignment="Center"
@@ -274,7 +305,7 @@
                            Grid.Row="0"
                            FontFamily="{StaticResource Inter}"/>
                 <TextBox
-                    Text="{Binding CurrentOrder.Total,UpdateSourceTrigger=PropertyChanged}"
+                    Text="a"
                     Grid.Row="1" 
                     IsReadOnly="True"
                    TextAlignment="Right"
@@ -289,7 +320,21 @@
                    Background="Transparent"
                    />
 
-            </StackPanel>
+            </StackPanel>-->
+            <Button Grid.Row="3" 
+                 Name="CheckoutBtn"
+                 VerticalAlignment="Center"
+     
+     
+                 HorizontalAlignment="Center" Width="170" Height="40"  
+                 Content="Borrow Returned"
+                 Click="UpdateOrderBtn_Click"
+                 FontFamily="{StaticResource Inter}"
+                 FontSize="18"
+                 Cursor="Hand"
+                 Style="{StaticResource RoundedButtonStyle}" >
+
+            </Button>
         </Grid>
 
     </Border>

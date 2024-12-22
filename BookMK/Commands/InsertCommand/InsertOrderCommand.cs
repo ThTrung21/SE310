@@ -55,6 +55,11 @@ namespace BookMK.Commands.InsertCommand
                 ReturnDate = vm.ReturnDate,
 
             };
+            if(o.BorrowDate>o.ReturnDate)
+            {
+                MessageBox.Show($"Return date cannot be before Borrowing Date", "Date Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             try
             {
                 // Add to cache before attempting to insert
@@ -98,7 +103,7 @@ namespace BookMK.Commands.InsertCommand
                 }
                 if (operationSucceeded)
                 {
-                    MessageBox.Show("A new import has been recorded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("A new borrow session has been recorded!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     Window f = parameter as Window;
                     f?.Close();
 
@@ -112,7 +117,7 @@ namespace BookMK.Commands.InsertCommand
                 else
                 {
                     // Notify user after all retries failed
-                    MessageBox.Show("Failed to create the import after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Failed to create a new borrow session after multiple attempts. Please try again later.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     Window f = parameter as Window;
                     f?.Close();
                 }

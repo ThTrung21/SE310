@@ -25,8 +25,8 @@ namespace BookMK.Commands.UpdateCommand
                 UpdateDefinition<BookCopy> update = Builders<BookCopy>.Update
                      .Set(x => x.IsRetire, true);
 
-                DataProvider<Book> db = new DataProvider<Book>(Book.Collection);
-                await db.ReadAllAsync();
+                DataProvider<BookCopy> db = new DataProvider<BookCopy>(BookCopy.Collection);
+                await db.UpdateAsync(filter, update);
             }
             catch (Exception e){
                 Application.Current.Dispatcher.Invoke(() =>

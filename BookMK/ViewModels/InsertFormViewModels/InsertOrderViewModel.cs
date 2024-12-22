@@ -98,8 +98,11 @@ namespace BookMK.ViewModels.InsertFormViewModels
             }
 
             SelectedCopy = BookCopy.GetBookCopy(SelectedBook.ID, CopyIDInput);
-           
+
             //check availability
+            if (SelectedCopy == null)
+            { MessageBox.Show($"{SelectedBook.Title} copy number {CopyIDInput} is not available. Cannot add to order.", "Availability Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            return; }
             if (SelectedCopy.IsRetire==true||SelectedCopy.Availability!=STATUS.Available ||  !BookCopy.IsExisted(SelectedCopy.ID))    
             {
                 MessageBox.Show($"{SelectedBook.Title } copy number {SelectedCopy.CopyID} is not available. Cannot add to order.", "Availability Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -110,10 +113,10 @@ namespace BookMK.ViewModels.InsertFormViewModels
             //    MessageBox.Show("The amount of item is too much! Cannot add to order.", "Stock Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             //    return;
             //}
+            
 
-
-
-            OrderItemList.Add(SelectedCopy);
+            
+                OrderItemList.Add(SelectedCopy);
         }
             
            

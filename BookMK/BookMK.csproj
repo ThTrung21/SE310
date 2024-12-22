@@ -288,6 +288,7 @@
     <Compile Include="Commands\ResetPasswordCommand.cs" />
     <Compile Include="Commands\SaveImageDialogCommand.cs" />
     <Compile Include="Commands\SeedingDatabase.cs" />
+    <Compile Include="Commands\UpdateCommand\ReturnBorrowCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateAccountCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateAuthorCommand.cs" />
     <Compile Include="Commands\UpdateCommand\UpdateBookCommand.cs" />

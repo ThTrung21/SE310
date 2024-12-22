@@ -1,4 +1,6 @@
-﻿using BookMK.Models;
+﻿using BookMK.Commands.UpdateCommand;
+using BookMK.Models;
+using BookMK.ViewModels.InsertFormViewModels;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -6,6 +8,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace BookMK.ViewModels.ViewForm
 {
@@ -24,11 +28,31 @@ namespace BookMK.ViewModels.ViewForm
             get { return _orderitemlist; }
             set { _orderitemlist = value; OnPropertyChanged(nameof(OrderItemList)); }
         }
+        public ViewOrderViewModel() { }
         public ViewOrderViewModel(Borrow i)
         {
             _logger.Information("ViewAuthorViewModel constructor with Borrow {a} parameter called.", i.ID);
             CurrentOrder = i;
+            this.ReturnBorrow = new ReturnBorrowCommand(this);
+        }
+        public ICommand ReturnBorrow { get; set; }
+        public static async Task<ViewOrderViewModel> Initialize()
+        {
+            ViewOrderViewModel viewModel = new ViewOrderViewModel();
+            await viewModel.IntializeAsync();
+            return viewModel;
+        }
+        private async Task IntializeAsync()
+        {
+            await Task.Run(async () =>
+            {
+                // Simulate an asynchronous operation
+                await Task.Delay(1000);
+
+
+            });
 
         }
+
     }
 }

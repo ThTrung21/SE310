@@ -366,7 +366,13 @@
                                     </Border>
                                     <Border Grid.Column="4"  BorderBrush="White"
                                              BorderThickness="0 0 0 2">
-                                        
+                                        <TextBlock 
+                                             Text="Retire"
+                                             VerticalAlignment="Center"
+                                             HorizontalAlignment="Center"
+                                             FontFamily="{StaticResource RobotoMono}"
+                                             FontSize="18"
+                                             Foreground="White"/>
                                     </Border>
                                 </Grid>
                                 <ListView
@@ -559,71 +565,56 @@
 
                                                     <Border Grid.Column="0" BorderBrush="White" BorderThickness="0 0 2 0">
                                                         <TextBlock VerticalAlignment="Center" 
-                                                           HorizontalAlignment="Center"
-                                                           Foreground="#99AAB5"
-                                                           Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
-                                                           FontSize="20"/>
+                               HorizontalAlignment="Center"
+                               Foreground="#99AAB5"
+                               Text="{Binding CopyID}" FontFamily="{StaticResource Inter}" 
+                               FontSize="20"/>
                                                     </Border>
 
                                                     <Border Grid.Column="1" BorderBrush="White" BorderThickness="0 0 2 0">
                                                         <ComboBox VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center"
-                                                              Width="100"
-                                                              SelectedItem="{Binding Condition, Mode=TwoWay}"
-                                                              FontFamily="{StaticResource Inter}" 
-                                                              FontSize="18"
-                                                              Background="#36393E"
-                                                              Foreground="#99AAB5"
-                                                              ItemsSource="{Binding AvailableConditions}">
-                                                            <ComboBox.Style>
-                                                                <Style TargetType="ComboBox">
-                                                                    <Setter Property="Foreground" Value="#99AAB5"/>
-                                                                    <Style.Triggers>
-                                                                        <DataTrigger Binding="{Binding Condition}" Value="New">
-                                                                            <Setter Property="Foreground" Value="Green"/>
-                                                                        </DataTrigger>
-                                                                        <DataTrigger Binding="{Binding Condition}" Value="OK">
-                                                                            <Setter Property="Foreground" Value="Orange"/>
-                                                                        </DataTrigger>
-                                                                        <DataTrigger Binding="{Binding Condition}" Value="Damaged">
-                                                                            <Setter Property="Foreground" Value="Red"/>
-                                                                        </DataTrigger>
-                                                                    </Style.Triggers>
-                                                                </Style>
-                                                            </ComboBox.Style>
+                                                                  Background="Transparent"
+                                                          HorizontalAlignment="Center"
+                                                          
+                                                          FontFamily="{StaticResource Inter}" 
+                                                          FontSize="18"
+                                                          SelectedIndex="0"
+                                                          Foreground="#99AAB5">
+                                                            <ComboBoxItem Content="New"/>
+                                                            <ComboBoxItem Content="OK"/>
+                                                            <ComboBoxItem Content="Damaged"/>
                                                         </ComboBox>
                                                     </Border>
 
                                                     <Border Grid.Column="2" BorderBrush="White" BorderThickness="0 0 2 0">
-                                                        <TextBlock Padding="10 0"
-                                                           VerticalAlignment="Center" 
-                                                           Foreground="#99AAB5"
-                                                           HorizontalAlignment="Center"
-                                                           Text="{Binding Availability}" FontFamily="{StaticResource Inter}" 
-                                                           FontSize="20"/>
+                                                            <TextBlock Padding="10 0"
+                                                               VerticalAlignment="Center" 
+                                                                   Foreground="#99AAB5"
+                                                                   HorizontalAlignment="Center"
+                                                                   Text="{Binding Availability}" FontFamily="{StaticResource Inter}" 
+                                                                   FontSize="20"/>
                                                     </Border>
 
                                                     <Border Grid.Column="3" BorderBrush="White" BorderThickness="0 0 2 0">
                                                         <TextBlock Foreground="#99AAB5"
-                                                       Padding="10 0"
-                                                       VerticalAlignment="Center" 
-                                                       HorizontalAlignment="Center"
-                                                       Text="{Binding StrBorrowerID}" FontFamily="{StaticResource Inter}" 
-                                                       FontSize="20"/>
+                                                           Padding="10 0"
+                                                           VerticalAlignment="Center" 
+                                                           HorizontalAlignment="Center"
+                                                           Text="{Binding BorrowerID}" FontFamily="{StaticResource Inter}" 
+                                                           FontSize="20"/>
                                                     </Border>
 
                                                     <Border Grid.Column="4" BorderBrush="White" BorderThickness="0 0">
-                                                        <Button Content="Retire"
-                            Command="{Binding RetireCommand}"
-                            CommandParameter="{Binding}"
-                            Foreground="#B44E4E"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            FontFamily="{StaticResource Inter}" 
-                            FontSize="16"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Visibility="{Binding AdminVisibility}"/>
+                                                        <CheckBox Content=""
+                                                          IsChecked="{Binding IsRetire, Mode=TwoWay}"
+                                                          Foreground="White"
+                                                          Background="Red"
+                                                          BorderBrush="White"
+                                                          FontFamily="{StaticResource Inter}" 
+                                                          FontSize="16"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"
+                             />
                                                     </Border>
                                                 </Grid>
                                             </ListViewItem>

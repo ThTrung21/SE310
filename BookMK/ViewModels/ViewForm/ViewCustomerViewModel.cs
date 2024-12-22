@@ -1,8 +1,10 @@
 ﻿using BookMK.Commands.UpdateCommand;
 using BookMK.Models;
+using MongoDB.Driver;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +20,12 @@ namespace BookMK.ViewModels.ViewForm
         {
             get => _currentcustomer;
             set { _currentcustomer = value; OnPropertyChanged(nameof(CurrentCustomer)); }
+        }
+        public ObservableCollection<Borrow> _borrowList;
+        public ObservableCollection<Borrow> BorrowList
+        {
+            get => _borrowList;
+            set { _borrowList = value; OnPropertyChanged(nameof(BorrowList)); }
         }
         private string _fullname;
         public string FullName
@@ -93,8 +101,19 @@ namespace BookMK.ViewModels.ViewForm
         }
         public ViewCustomerViewModel(Customer c)
         {
+
             _logger.Information("ViewAuthorViewModel constructor with Customer {a} parameter called.",c.ID);
             this.CurrentCustomer = c;
+
+
+
+            DataProvider<Borrow> db = new DataProvider<Borrow>(Borrow.Collection);
+            FilterDefinition<Borrow> filter = Builders<Borrow>.Filter.Where(a => a.CustomerID == c.ID);
+            List<Borrow> allborrows = db.ReadFiltered(filter);
+
+
+
+            this.BorrowList = new ObservableCollection<Borrow>(allborrows);
             UpdateCustomer = new UpdateCustomerCommand(this);
         }
 

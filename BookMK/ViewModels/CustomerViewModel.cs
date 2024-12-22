@@ -116,10 +116,11 @@ namespace BookMK.ViewModels
         public void UpdateCustomerList(List<Customer> customers)
         {
             this.Customers.Clear();
-            foreach (Customer c in customers)
+            foreach (Customer c in customers.OrderBy(c => c.ID))
             {
                 Customers.Add(c);
             }
+
             _logger.Information("Displayed updated customer list");
         }
         public static async Task<CustomerViewModel> Initialize()

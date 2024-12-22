@@ -107,10 +107,10 @@ namespace BookMK.ViewModels.ViewForm
         }
 
         private CONDITION _condition;
-        public CONDITION CONDITION
+        public CONDITION Condition
         {
             get { return _condition; }
-            set { _condition = value; OnPropertyChanged(nameof(CONDITION)); }
+            set { _condition = value; OnPropertyChanged(nameof(Condition)); }
         }
         private STATUS _availability;
         public STATUS Availability
@@ -157,7 +157,7 @@ namespace BookMK.ViewModels.ViewForm
         public ICommand SaveImageDialog { get; set; }
         public ICommand DeleteBook { get; set; }
         public ICommand RetireCopy { get; set; }
-
+        public ICommand UpdateCopy { get; set; }
         public ViewBookViewModel() { _logger.Information("ViewBookViewModel constructor called."); }
         public ViewBookViewModel(Book b, string role) 
         {
