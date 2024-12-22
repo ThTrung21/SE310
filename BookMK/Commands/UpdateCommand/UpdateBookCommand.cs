@@ -50,12 +50,20 @@ namespace BookMK.Commands.UpdateCommand
                     //// More attributes to update can be added here
 
                     DataProvider<Book> db = new DataProvider<Book>(Book.Collection);
-                    await db.ReadAllAsync();
-                    //await db.UpdateAsync(filter, update);
-                    //operationSucceeded = true;
-                
+                    //await db.ReadAllAsync();
+                await db.UpdateAsync(filter, update);
+                operationSucceeded = true;
+                if (operationSucceeded)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        MessageBox.Show("Staff updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        Window f = parameter as Window;
+                        f?.Close();
+                    });
+                }
 
-                
+
             }
             catch (Exception ex)
             {
