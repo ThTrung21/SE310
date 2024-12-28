@@ -13,7 +13,7 @@ namespace BookMK.Models
     {
         public IMongoDatabase db;
         public IMongoCollection<T> collection;
-        public static string connectionString = "mongodb+srv://trung:XAoFKu8ucSMULjCs@cluster0.mpt8ire.mongodb.net/";
+        public static string connectionString = "mongodb+srv://trung:<password>@cluster0.mpt8ire.mongodb.net/";
         
         public DataProvider(string collectionName)
         {
